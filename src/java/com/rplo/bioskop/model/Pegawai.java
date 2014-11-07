@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
-import org.springframework.jdbc.core.RowMapper;
 
 /**
  *
@@ -137,20 +136,20 @@ public class Pegawai {
 
         jdbcTemplate.update(sql,
                 new Object[]{
-                    this.getmUserName(),
-                    this.getmNamaPegawai(),
-                    this.getmTempatTanggalLahir(),
-                    this.getmAlamatPegawai(),
-                    this.getmEmailPegawai(),
-                    this.getmNomorTelepon(),
-                    this.getmKodePegawai()
+                    pPegawai.getmUserName(),
+                    pPegawai.getmNamaPegawai(),
+                    pPegawai.getmTempatTanggalLahir(),
+                    pPegawai.getmAlamatPegawai(),
+                    pPegawai.getmEmailPegawai(),
+                    pPegawai.getmNomorTelepon(),
+                    pPegawai.getmKodePegawai()
                 });
     }
 
-    public void deleteData(String id) {
+    public void deleteData(String pKodePegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         
-        String sql = "delete from user where user_id=" + id;
+        String sql = "DELETE FROM pegawai WHERE kode_pegawai=" + pKodePegawai;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
     }
