@@ -23,13 +23,21 @@ public class Pegawai {
     private String mAlamatPegawai;
     private String mEmailPegawai;
     private String mNomorTelepon;
+    private ROLE mRolePegawai;
+
+    public ROLE getmRolePegawai() {
+        return mRolePegawai;
+    }
+
+    public void setmRolePegawai(ROLE mRolePegawai) {
+        this.mRolePegawai = mRolePegawai;
+    }
 
     /**
-     * 0 : REGULAR CUSTOMER & GUEST 1 : MEMBER 2 : PEGAWAI 3 : ADMIN
+     * 1 : PEGAWAI 2 : ADMIN
      */
     public enum ROLE {
-
-        GUEST, MEMBER, PEGAWAI, ADMIN;
+        PEGAWAI, ADMIN;
     }
 
     public Pegawai() {
@@ -91,25 +99,26 @@ public class Pegawai {
         this.mUserName = mUserName;
     }
 
-    public void simpanData(Pegawai pPegawai) {
+    public static void simpanData(Pegawai pPegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        String sql = "INSERT INTO pegawai VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pegawai VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
                 new Object[]{
-                    this.getmKodePegawai(),
-                    this.getmUserName(),
-                    this.getmNamaPegawai(),
-                    this.getmTempatTanggalLahir(),
-                    this.getmAlamatPegawai(),
-                    this.getmEmailPegawai(),
-                    this.getmNomorTelepon()
+                    pPegawai.getmKodePegawai(),
+                    pPegawai.getmUserName(),
+                    pPegawai.getmNamaPegawai(),
+                    pPegawai.getmTempatTanggalLahir(),
+                    pPegawai.getmAlamatPegawai(),
+                    pPegawai.getmEmailPegawai(),
+                    pPegawai.getmNomorTelepon(),
+                    pPegawai.getmRolePegawai()
                 });
     }
 
-    public List<Pegawai> getPegawaiList() {
+    public static List<Pegawai> getPegawaiList() {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List pegawaiList = new ArrayList();
 
@@ -120,7 +129,7 @@ public class Pegawai {
         return pegawaiList;
     }
 
-    public void updateData(Pegawai pPegawai) {
+    public static void updateData(Pegawai pPegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
 
         String sql = "UPDATE pegawai SET "
@@ -128,9 +137,9 @@ public class Pegawai {
                 + "nama_pegawai = ?, "
                 + "ttl_pegawai = ?, "
                 + "alamat_pegawai = ?, "
-                + "city = ?, "
                 + "email_pegawai = ?, "
-                + "no_telp_pegawai = ? "
+                + "no_telp_pegawai = ?, "
+                + "role_pegawai = ? "
                 + "WHERE kode_pegawai = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -142,7 +151,8 @@ public class Pegawai {
                     pPegawai.getmAlamatPegawai(),
                     pPegawai.getmEmailPegawai(),
                     pPegawai.getmNomorTelepon(),
-                    pPegawai.getmKodePegawai()
+                    pPegawai.getmKodePegawai(),
+                    pPegawai.getmRolePegawai()
                 });
     }
 

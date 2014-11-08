@@ -6,6 +6,8 @@
 
 package com.rplo.bioskop.mapper;
 
+import com.rplo.bioskop.extractor.MemberExtractor;
+import com.rplo.bioskop.extractor.PegawaiExtractor;
 import com.rplo.bioskop.model.Member;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +21,8 @@ public class MemberRowModel implements RowMapper<Member> {
 
     @Override
     public Member mapRow(ResultSet rs, int i) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MemberExtractor memberExtractor = new MemberExtractor();
+        return memberExtractor.extractData(rs);
     }
     
 }

@@ -27,6 +27,7 @@ public class PegawaiExtractor implements ResultSetExtractor<Pegawai> {
         pegawai.setmAlamatPegawai(rs.getString(5));
         pegawai.setmEmailPegawai(rs.getString(6));
         pegawai.setmNomorTelepon(rs.getString(7));
+        pegawai.setmRolePegawai(Pegawai.ROLE.PEGAWAI);
         
         return pegawai;
     }

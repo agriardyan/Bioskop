@@ -19,6 +19,7 @@ public class Member {
     private String mKodeMember;
     private String mNamaMember;
     private String mTempatTanggalLahir;
+    private String mAlamatMember;
     private String mEmail;
     private String mNomorTelepon;
     private int mSaldo;
@@ -37,6 +38,14 @@ public class Member {
 
     public String getmKodeMember() {
         return mKodeMember;
+    }
+
+    public String getmAlamatMember() {
+        return mAlamatMember;
+    }
+
+    public void setmAlamatMember(String mAlamatMember) {
+        this.mAlamatMember = mAlamatMember;
     }
 
     public void setmKodeMember(String mKodeMember) {
@@ -83,7 +92,7 @@ public class Member {
         this.mTempatTanggalLahir = mTempatTanggalLahir;
     }
 
-    public void simpanData(Member pMember) {
+    public static void simpanData(Member pMember) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -94,6 +103,7 @@ public class Member {
                     pMember.getmKodeMember(),
                     pMember.getmNamaMember(),
                     pMember.getmTempatTanggalLahir(),
+                    pMember.getmAlamatMember(),
                     pMember.getmEmail(),
                     pMember.getmNomorTelepon(),
                     pMember.getmSaldo(),
@@ -101,7 +111,7 @@ public class Member {
                 });
     }
 
-    public List<Pegawai> getMemberList() {
+    public static List<Pegawai> getMemberList() {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List memberList = new ArrayList();
 
@@ -112,34 +122,33 @@ public class Member {
         return memberList;
     }
 
-    /*
-     * BELUM SELESAI     
-     public void updateData(Pegawai pPegawai) {
-     DataSource dataSource = DatabaseConnection.getmDataSource();
+    public static void updateData(Member pMember) {
+        DataSource dataSource = DatabaseConnection.getmDataSource();
 
-     String sql = "UPDATE pegawai SET "
-     + "username_pegawai = ?"
-     + "nama_pegawai = ?, "
-     + "ttl_pegawai = ?, "
-     + "alamat_pegawai = ?, "
-     + "city = ?, "
-     + "email_pegawai = ?, "
-     + "no_telp_pegawai = ? "
-     + "WHERE kode_pegawai = ?";
-     JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "UPDATE member SET "
+                + "nama_member = ?, "
+                + "ttl_member = ?, "
+                + "alamat_member = ?, "
+                + "email_member = ?, "
+                + "no_telp_member = ?, "
+                + "saldo_member = ?, "
+                + "no_kartu_kredit = ? "
+                + "WHERE kode_member = ?";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-     jdbcTemplate.update(sql,
-     new Object[]{
-     pPegawai.getmUserName(),
-     pPegawai.getmNamaPegawai(),
-     pPegawai.getmTempatTanggalLahir(),
-     pPegawai.getmAlamatPegawai(),
-     pPegawai.getmEmailPegawai(),
-     pPegawai.getmNomorTelepon(),
-     pPegawai.getmKodePegawai()
-     });
-     }
-     */
+        jdbcTemplate.update(sql,
+                new Object[]{
+                    pMember.getmNamaMember(),
+                    pMember.getmTempatTanggalLahir(),
+                    pMember.getmAlamatMember(), 
+                    pMember.getmEmail(),
+                    pMember.getmNomorTelepon(),
+                    pMember.getmSaldo(),
+                    pMember.getmNomorKartuKredit(),
+                    pMember.getmKodeMember()
+                });
+    }
+
     public void deleteData(String pKodeMember) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
 

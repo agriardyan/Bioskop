@@ -6,6 +6,7 @@ package com.rplo.bioskop.mapper;
 
 import com.rplo.bioskop.extractor.PegawaiExtractor;
 import com.rplo.bioskop.model.Pegawai;
+import com.rplo.bioskop.model.StudioBioskop;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,12 +15,13 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author basisb07la
  */
-public class PegawaiRowMapper implements RowMapper<Pegawai> {
+public class StudioBioskopRowMapper implements RowMapper<StudioBioskop> {
 
     @Override
-    public Pegawai mapRow(ResultSet rs, int i) throws SQLException {
-        PegawaiExtractor pegawaiExtractor = new PegawaiExtractor();
-        return pegawaiExtractor.extractData(rs);
+    public StudioBioskop mapRow(ResultSet rs, int i) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }
