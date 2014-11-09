@@ -17,30 +17,64 @@ import javax.sql.DataSource;
 public class Pegawai {
 
     private String mKodePegawai;
-    private String mUserName;
+    private String mUsernamePegawai;
+    private String mPaswordPegawai;
     private String mNamaPegawai;
     private String mTempatTanggalLahir;
     private String mAlamatPegawai;
     private String mEmailPegawai;
     private String mNomorTelepon;
-    private ROLE mRolePegawai;
-
-    public ROLE getmRolePegawai() {
-        return mRolePegawai;
-    }
-
-    public void setmRolePegawai(ROLE mRolePegawai) {
-        this.mRolePegawai = mRolePegawai;
-    }
+    private String mRolePegawai;
 
     /**
      * 1 : PEGAWAI 2 : ADMIN
      */
     public enum ROLE {
+
         PEGAWAI, ADMIN;
     }
 
     public Pegawai() {
+    }
+
+    public String getmKodePegawai() {
+        return mKodePegawai;
+    }
+
+    public void setmKodePegawai(String mKodePegawai) {
+        this.mKodePegawai = mKodePegawai;
+    }
+
+    public String getmUsernamePegawai() {
+        return mUsernamePegawai;
+    }
+
+    public void setmUsernamePegawai(String mUsernamePegawai) {
+        this.mUsernamePegawai = mUsernamePegawai;
+    }
+
+    public String getmPaswordPegawai() {
+        return mPaswordPegawai;
+    }
+
+    public void setmPaswordPegawai(String mPaswordPegawai) {
+        this.mPaswordPegawai = mPaswordPegawai;
+    }
+
+    public String getmNamaPegawai() {
+        return mNamaPegawai;
+    }
+
+    public void setmNamaPegawai(String mNamaPegawai) {
+        this.mNamaPegawai = mNamaPegawai;
+    }
+
+    public String getmTempatTanggalLahir() {
+        return mTempatTanggalLahir;
+    }
+
+    public void setmTempatTanggalLahir(String mTempatTanggalLahir) {
+        this.mTempatTanggalLahir = mTempatTanggalLahir;
     }
 
     public String getmAlamatPegawai() {
@@ -59,22 +93,6 @@ public class Pegawai {
         this.mEmailPegawai = mEmailPegawai;
     }
 
-    public String getmKodePegawai() {
-        return mKodePegawai;
-    }
-
-    public void setmKodePegawai(String mKodePegawai) {
-        this.mKodePegawai = mKodePegawai;
-    }
-
-    public String getmNamaPegawai() {
-        return mNamaPegawai;
-    }
-
-    public void setmNamaPegawai(String mNamaPegawai) {
-        this.mNamaPegawai = mNamaPegawai;
-    }
-
     public String getmNomorTelepon() {
         return mNomorTelepon;
     }
@@ -83,32 +101,25 @@ public class Pegawai {
         this.mNomorTelepon = mNomorTelepon;
     }
 
-    public String getmTempatTanggalLahir() {
-        return mTempatTanggalLahir;
+    public String getmRolePegawai() {
+        return mRolePegawai;
     }
 
-    public void setmTempatTanggalLahir(String mTempatTanggalLahir) {
-        this.mTempatTanggalLahir = mTempatTanggalLahir;
-    }
-
-    public String getmUserName() {
-        return mUserName;
-    }
-
-    public void setmUserName(String mUserName) {
-        this.mUserName = mUserName;
+    public void setmRolePegawai(String mRolePegawai) {
+        this.mRolePegawai = mRolePegawai;
     }
 
     public static void simpanData(Pegawai pPegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        String sql = "INSERT INTO pegawai VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pegawai VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
                 new Object[]{
                     pPegawai.getmKodePegawai(),
-                    pPegawai.getmUserName(),
+                    pPegawai.getmUsernamePegawai(),
+                    pPegawai.getmPaswordPegawai(),
                     pPegawai.getmNamaPegawai(),
                     pPegawai.getmTempatTanggalLahir(),
                     pPegawai.getmAlamatPegawai(),
@@ -118,9 +129,9 @@ public class Pegawai {
                 });
     }
 
-    public static List<Pegawai> getPegawaiList() {
+    public static List<Pegawai> getDataList() {
         DataSource dataSource = DatabaseConnection.getmDataSource();
-        List pegawaiList = new ArrayList();
+        List<Pegawai> pegawaiList = new ArrayList<Pegawai>();
 
         String sql = "SELECT * FROM pegawai";
 
@@ -129,11 +140,38 @@ public class Pegawai {
         return pegawaiList;
     }
 
+    public static boolean validateLoginCredential(String pUsername, String pPassword) {
+        DataSource dataSource = DatabaseConnection.getmDataSource();
+        List<Pegawai> pegawaiList = new ArrayList<Pegawai>();
+
+        String sql = "SELECT * FROM pegawai WHERE username_pegawai = \'" + pUsername.toUpperCase() + "\'";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper());
+
+        if (pegawaiList.get(0) != null) {
+            String username = pegawaiList.get(0).getmUsernamePegawai();
+            String password = pegawaiList.get(0).getmPaswordPegawai();
+            String role = pegawaiList.get(0).getmRolePegawai();
+            if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password)) {
+                System.out.println("ROLE : " + role);
+                return true;
+            } else {
+                System.out.println("WRONG USERNAME/PASSWORD");
+                return false;
+            }
+        } else {
+            System.out.println("UNREGISTERED USERNAME");
+            return false;
+        }
+    }
+
     public static void updateData(Pegawai pPegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
 
         String sql = "UPDATE pegawai SET "
-                + "username_pegawai = ?"
+                + "username_pegawai = ?, "
+                + "password_pegawai = ?, "
                 + "nama_pegawai = ?, "
                 + "ttl_pegawai = ?, "
                 + "alamat_pegawai = ?, "
@@ -145,7 +183,8 @@ public class Pegawai {
 
         jdbcTemplate.update(sql,
                 new Object[]{
-                    pPegawai.getmUserName(),
+                    pPegawai.getmUsernamePegawai(),
+                    pPegawai.getmPaswordPegawai(),
                     pPegawai.getmNamaPegawai(),
                     pPegawai.getmTempatTanggalLahir(),
                     pPegawai.getmAlamatPegawai(),
@@ -156,12 +195,12 @@ public class Pegawai {
                 });
     }
 
-    public void deleteData(String pKodePegawai) {
+    public static void deleteData(String pKodePegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
-        
-        String sql = "DELETE FROM pegawai WHERE kode_pegawai=" + pKodePegawai;
+
+        String sql = "DELETE FROM pegawai WHERE kode_pegawai = \'" + pKodePegawai + "\'";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
     }
-    
+
 }

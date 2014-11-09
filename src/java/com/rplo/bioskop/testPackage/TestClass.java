@@ -7,7 +7,9 @@
 package com.rplo.bioskop.testPackage;
 
 import com.rplo.bioskop.model.DatabaseConnection;
+import com.rplo.bioskop.model.Member;
 import com.rplo.bioskop.model.Pegawai;
+import java.util.List;
 
 /**
  *
@@ -17,7 +19,15 @@ public class TestClass {
     
     public static void main(String[] args) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
+        boolean validateLoginCredential = Pegawai.validateLoginCredential("p003", "P003");
         
+        System.out.println("LOGIN STATUS : "+validateLoginCredential);
+        
+        List<Pegawai> dataList = Pegawai.getDataList();
+        
+        for (int i = 0; i < dataList.size(); i++) {
+            System.out.println(dataList.get(i).getmNamaPegawai()+" ");
+        }
     }
     
 }

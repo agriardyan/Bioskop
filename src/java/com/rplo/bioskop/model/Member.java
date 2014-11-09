@@ -4,11 +4,16 @@
  */
 package com.rplo.bioskop.model;
 
+import com.rplo.bioskop.mapper.MemberRowMapper;
 import com.rplo.bioskop.mapper.PegawaiRowMapper;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 
 /**
  *
@@ -17,6 +22,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class Member {
 
     private String mKodeMember;
+    private String mUsernameMember;
+    private String mPasswordMember;
     private String mNamaMember;
     private String mTempatTanggalLahir;
     private String mAlamatMember;
@@ -91,16 +98,34 @@ public class Member {
     public void setmTempatTanggalLahir(String mTempatTanggalLahir) {
         this.mTempatTanggalLahir = mTempatTanggalLahir;
     }
+    
+    public String getmUsernameMember() {
+        return mUsernameMember;
+    }
+
+    public void setmUsernameMember(String mUsernameMember) {
+        this.mUsernameMember = mUsernameMember;
+    }
+
+    public String getmPasswordMember() {
+        return mPasswordMember;
+    }
+
+    public void setmPasswordMember(String mPasswordMember) {
+        this.mPasswordMember = mPasswordMember;
+    }
 
     public static void simpanData(Member pMember) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        String sql = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
                 new Object[]{
                     pMember.getmKodeMember(),
+                    pMember.getmUsernameMember(),
+                    pMember.getmPasswordMember(),
                     pMember.getmNamaMember(),
                     pMember.getmTempatTanggalLahir(),
                     pMember.getmAlamatMember(),
@@ -111,21 +136,48 @@ public class Member {
                 });
     }
 
-    public static List<Pegawai> getMemberList() {
+    public static List<Member> getDataList() {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List memberList = new ArrayList();
 
         String sql = "SELECT * FROM member";
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        memberList = jdbcTemplate.query(sql, new PegawaiRowMapper());
+        memberList = jdbcTemplate.query(sql, new MemberRowMapper());
         return memberList;
+    }
+    
+    public static boolean validateLoginCredential(String pUsername, String pPassword) {
+        DataSource dataSource = DatabaseConnection.getmDataSource();
+        List<Member> memberList = new ArrayList<Member>();
+
+        String sql = "SELECT * FROM member WHERE username_member = \'" + pUsername.toUpperCase() + "\'";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        memberList = jdbcTemplate.query(sql, new MemberRowMapper());
+
+        if (memberList.get(0) != null) {
+            String username = memberList.get(0).getmUsernameMember();
+            String password = memberList.get(0).getmPasswordMember();
+            if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password)) {
+                System.out.println("SUKSES LOGIN MEMBER");
+                return true;
+            } else {
+                System.out.println("WRONG USERNAME/PASSWORD");
+                return false;
+            }
+        } else {
+            System.out.println("UNREGISTERED USERNAME");
+            return false;
+        }
     }
 
     public static void updateData(Member pMember) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
 
         String sql = "UPDATE member SET "
+                + "username_member = ?, "
+                + "password_member = ?, "
                 + "nama_member = ?, "
                 + "ttl_member = ?, "
                 + "alamat_member = ?, "
@@ -138,6 +190,8 @@ public class Member {
 
         jdbcTemplate.update(sql,
                 new Object[]{
+                    pMember.getmUsernameMember(),
+                    pMember.getmPasswordMember(),
                     pMember.getmNamaMember(),
                     pMember.getmTempatTanggalLahir(),
                     pMember.getmAlamatMember(), 
@@ -149,10 +203,10 @@ public class Member {
                 });
     }
 
-    public void deleteData(String pKodeMember) {
+    public static void deleteData(String pKodeMember) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
 
-        String sql = "DELETE FROM member WHERE kode_member=" + pKodeMember;
+        String sql = "DELETE FROM member WHERE kode_member = " + pKodeMember;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
     }

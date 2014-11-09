@@ -23,12 +23,15 @@ public class MemberExtractor implements ResultSetExtractor<Member> {
         Member member = new Member();
         
         member.setmKodeMember(rs.getString(1));
-        member.setmNamaMember(rs.getString(2));
-        member.setmTempatTanggalLahir(rs.getString(3));
-        member.setmEmail(rs.getString(4));
-        member.setmNomorTelepon(rs.getString(5));
-        member.setmSaldo(rs.getInt(6));
-        member.setmNomorKartuKredit(rs.getString(7));
+        member.setmUsernameMember(rs.getString(2));
+        member.setmPasswordMember(rs.getString(3));
+        member.setmNamaMember(rs.getString(4));
+        member.setmTempatTanggalLahir(rs.getString(5));
+        member.setmAlamatMember(rs.getString(6));
+        member.setmEmail(rs.getString(7));
+        member.setmNomorTelepon(rs.getString(8));
+        member.setmSaldo(rs.getInt(9));
+        member.setmNomorKartuKredit(rs.getString(10));
         
         return member;
     }

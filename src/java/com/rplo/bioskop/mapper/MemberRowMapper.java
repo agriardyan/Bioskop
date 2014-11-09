@@ -17,7 +17,7 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author root
  */
-public class MemberRowModel implements RowMapper<Member> {
+public class MemberRowMapper implements RowMapper<Member> {
 
     @Override
     public Member mapRow(ResultSet rs, int i) throws SQLException {

@@ -21,13 +21,14 @@ public class PegawaiExtractor implements ResultSetExtractor<Pegawai> {
         Pegawai pegawai = new Pegawai();
         
         pegawai.setmKodePegawai(rs.getString(1));
-        pegawai.setmUserName(rs.getString(2));
-        pegawai.setmNamaPegawai(rs.getString(3));
-        pegawai.setmTempatTanggalLahir(rs.getString(4));
-        pegawai.setmAlamatPegawai(rs.getString(5));
-        pegawai.setmEmailPegawai(rs.getString(6));
-        pegawai.setmNomorTelepon(rs.getString(7));
-        pegawai.setmRolePegawai(Pegawai.ROLE.PEGAWAI);
+        pegawai.setmUsernamePegawai(rs.getString(2));
+        pegawai.setmPaswordPegawai(rs.getString(3));
+        pegawai.setmNamaPegawai(rs.getString(4));
+        pegawai.setmTempatTanggalLahir(rs.getString(5));
+        pegawai.setmAlamatPegawai(rs.getString(6));
+        pegawai.setmEmailPegawai(rs.getString(7));
+        pegawai.setmNomorTelepon(rs.getString(8));
+        pegawai.setmRolePegawai(rs.getString(9));
         
         return pegawai;
     }
