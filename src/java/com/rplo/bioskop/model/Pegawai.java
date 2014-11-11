@@ -4,11 +4,15 @@
  */
 package com.rplo.bioskop.model;
 
-import com.rplo.bioskop.mapper.PegawaiRowMapper;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 /**
  *
@@ -201,6 +205,37 @@ public class Pegawai {
         String sql = "DELETE FROM pegawai WHERE kode_pegawai = \'" + pKodePegawai + "\'";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
+    }
+
+    public static class PegawaiRowMapper implements RowMapper<Pegawai> {
+
+        @Override
+        public Pegawai mapRow(ResultSet rs, int i) throws SQLException {
+            PegawaiExtractor pegawaiExtractor = new PegawaiExtractor();
+            return pegawaiExtractor.extractData(rs);
+        }
+
+    }
+
+    public static class PegawaiExtractor implements ResultSetExtractor<Pegawai> {
+
+        @Override
+        public Pegawai extractData(ResultSet rs) throws SQLException, DataAccessException {
+            Pegawai pegawai = new Pegawai();
+
+            pegawai.setmKodePegawai(rs.getString(1));
+            pegawai.setmUsernamePegawai(rs.getString(2));
+            pegawai.setmPaswordPegawai(rs.getString(3));
+            pegawai.setmNamaPegawai(rs.getString(4));
+            pegawai.setmTempatTanggalLahir(rs.getString(5));
+            pegawai.setmAlamatPegawai(rs.getString(6));
+            pegawai.setmEmailPegawai(rs.getString(7));
+            pegawai.setmNomorTelepon(rs.getString(8));
+            pegawai.setmRolePegawai(rs.getString(9));
+
+            return pegawai;
+        }
+
     }
 
 }

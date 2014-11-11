@@ -4,8 +4,6 @@
  */
 package com.rplo.bioskop.model;
 
-import com.rplo.bioskop.mapper.MemberRowMapper;
-import com.rplo.bioskop.mapper.PegawaiRowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 /**
  *
@@ -98,7 +97,7 @@ public class Member {
     public void setmTempatTanggalLahir(String mTempatTanggalLahir) {
         this.mTempatTanggalLahir = mTempatTanggalLahir;
     }
-    
+
     public String getmUsernameMember() {
         return mUsernameMember;
     }
@@ -146,7 +145,7 @@ public class Member {
         memberList = jdbcTemplate.query(sql, new MemberRowMapper());
         return memberList;
     }
-    
+
     public static boolean validateLoginCredential(String pUsername, String pPassword) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List<Member> memberList = new ArrayList<Member>();
@@ -194,7 +193,7 @@ public class Member {
                     pMember.getmPasswordMember(),
                     pMember.getmNamaMember(),
                     pMember.getmTempatTanggalLahir(),
-                    pMember.getmAlamatMember(), 
+                    pMember.getmAlamatMember(),
                     pMember.getmEmail(),
                     pMember.getmNomorTelepon(),
                     pMember.getmSaldo(),
@@ -209,6 +208,38 @@ public class Member {
         String sql = "DELETE FROM member WHERE kode_member = " + pKodeMember;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
+    }
+
+    public static class MemberRowMapper implements RowMapper<Member> {
+
+        @Override
+        public Member mapRow(ResultSet rs, int i) throws SQLException {
+            MemberExtractor memberExtractor = new MemberExtractor();
+            return memberExtractor.extractData(rs);
+        }
+
+    }
+
+    public static class MemberExtractor implements ResultSetExtractor<Member> {
+
+        @Override
+        public Member extractData(ResultSet rs) throws SQLException, DataAccessException {
+            Member member = new Member();
+
+            member.setmKodeMember(rs.getString(1));
+            member.setmUsernameMember(rs.getString(2));
+            member.setmPasswordMember(rs.getString(3));
+            member.setmNamaMember(rs.getString(4));
+            member.setmTempatTanggalLahir(rs.getString(5));
+            member.setmAlamatMember(rs.getString(6));
+            member.setmEmail(rs.getString(7));
+            member.setmNomorTelepon(rs.getString(8));
+            member.setmSaldo(rs.getInt(9));
+            member.setmNomorKartuKredit(rs.getString(10));
+
+            return member;
+        }
+
     }
 
 }
