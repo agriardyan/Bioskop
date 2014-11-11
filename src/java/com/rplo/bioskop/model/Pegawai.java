@@ -35,7 +35,7 @@ public class Pegawai {
      */
     public enum ROLE {
 
-        PEGAWAI, ADMIN;
+        OPERATOR, ADMIN;
     }
 
     public Pegawai() {
@@ -144,7 +144,20 @@ public class Pegawai {
         return pegawaiList;
     }
 
-    public static boolean validateLoginCredential(String pUsername, String pPassword) {
+    public static void validate() {
+
+    }
+
+    /**
+     * Memvalidasi login user, akan mengembalikan nilai int sesuai dengan hasil
+     * validasi
+     *
+     * @param pUsername username yang diinputkan user
+     * @param pPassword password yang diinputkan user
+     * @return 0 - unregistered username; 1 - wrong username/password; 2 - login
+     * as PEGAWAI accepted; 3 - login as ADMIN accepted;
+     */
+    public static int validateLoginCredential(String pUsername, String pPassword) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List<Pegawai> pegawaiList = new ArrayList<Pegawai>();
 
@@ -159,14 +172,18 @@ public class Pegawai {
             String role = pegawaiList.get(0).getmRolePegawai();
             if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password)) {
                 System.out.println("ROLE : " + role);
-                return true;
+                if (role.equals(ROLE.OPERATOR.toString())) {
+                    return 2;
+                } else {
+                    return 3;
+                }
             } else {
                 System.out.println("WRONG USERNAME/PASSWORD");
-                return false;
+                return 1;
             }
         } else {
             System.out.println("UNREGISTERED USERNAME");
-            return false;
+            return 0;
         }
     }
 

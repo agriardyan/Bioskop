@@ -19,7 +19,7 @@ public class TestClass {
     
     public static void main(String[] args) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        boolean validateLoginCredential = Pegawai.validateLoginCredential("p003", "P003");
+        int validateLoginCredential = Pegawai.validateLoginCredential("p003", "P003");
         
         System.out.println("LOGIN STATUS : "+validateLoginCredential);
         
