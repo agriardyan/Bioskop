@@ -13,6 +13,7 @@
     </head>
     <body>
         <div class="ui container">
+            
             <!--Menu bar-->
             <div class="ui menu">
                 <a class="active item" href="#">
@@ -53,11 +54,11 @@
         <script type="text/javascript">
             $('#logoutButton').click(function() {
             <%
-                session.removeAttribute("username");
-                session.removeAttribute("password");
-                session.removeAttribute("name");
-                session.invalidate();
-                response.sendRedirect("home.jsp");
+//                session.removeAttribute("username");
+//                session.removeAttribute("password");
+//                session.removeAttribute("name");
+//                session.invalidate();
+//                response.sendRedirect("home.jsp");
             %>
                 });
             $(document).ready(function() {

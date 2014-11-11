@@ -7,18 +7,19 @@
 <!DOCTYPE html>
 <html>
     <%if (session.getAttribute("username") == null) {
-    %><script>alert("You don't have permission to access this page");</script><%
+        out.print("<script>alert(\"You don't have permission to access this page\");</script>");
+    
 //    response.sendRedirect("home.jsp");
             RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
             rd.forward(request, response);
         }
         if (request.getParameter("logoutAd") != null) {
-            session.removeAttribute("username");
-            session.removeAttribute("password");
-            session.removeAttribute("name");
-            session.invalidate();
-            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-            rd.forward(request, response);
+//            session.removeAttribute("username");
+//            session.removeAttribute("password");
+//            session.removeAttribute("name");
+//            session.invalidate();
+//            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+//            rd.forward(request, response);
 //            response.sendRedirect("home.jsp");
         }
     %>

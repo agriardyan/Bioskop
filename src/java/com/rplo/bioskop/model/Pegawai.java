@@ -144,10 +144,6 @@ public class Pegawai {
         return pegawaiList;
     }
 
-    public static void validate() {
-
-    }
-
     /**
      * Memvalidasi login user, akan mengembalikan nilai int sesuai dengan hasil
      * validasi
