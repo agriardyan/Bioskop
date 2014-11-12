@@ -170,7 +170,7 @@ public class DataPegawai {
                 System.out.println("ROLE : " + role);
                 if (role.equals(ROLE.OPERATOR.toString())) {
                     return 2;
-                } else {
+                } else if (role.equals(ROLE.ADMIN.toString())) {
                     return 3;
                 }
             } else {
@@ -181,6 +181,8 @@ public class DataPegawai {
             System.out.println("UNREGISTERED USERNAME");
             return 0;
         }
+        
+        return -1;
     }
 
     public static void updateData(DataPegawai pPegawai) {

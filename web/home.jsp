@@ -37,20 +37,15 @@
                     session.setAttribute("name", request.getParameter("username"));
                     session.setAttribute("username", request.getParameter("username"));
                     response.sendRedirect("halaman-utama-operator.jsp");
-//                    rd = request.getRequestDispatcher("halaman-utama-operator.jsp");
-//                    rd.forward(request, response);
                     break;
                 case 3:
                     session.setAttribute("role", "Admin");
                     session.setAttribute("name", request.getParameter("username"));
                     session.setAttribute("username", request.getParameter("username"));
                     response.sendRedirect("halaman-utama-admin.jsp");
-//                    rd = request.getRequestDispatcher("halaman-utama-admin.jsp");
-//                    rd.forward(request, response);
                     break;
                 default:
                     System.err.println("ENTER DEFAULT");
-                    response.sendRedirect("halaman-utama-operator.jsp");
                     break;
             }
         }
