@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="com.rplo.bioskop.model.DatabaseConnection"%>
-<%@page import="com.rplo.bioskop.model.Pegawai"%>
+<%@page import="com.rplo.bioskop.model.DataPegawai"%>
 <!DOCTYPE html>
 <html>
     <%
@@ -20,7 +20,7 @@
         if (null != request.getParameter("commit")) {
             DatabaseConnection databaseConnection = new DatabaseConnection();
             RequestDispatcher rd;
-            int login = Pegawai.validateLoginCredential(request.getParameter("username"), request.getParameter("password"));
+            int login = DataPegawai.validateLoginCredential(request.getParameter("username"), request.getParameter("password"));
             switch (login) {
                 case 0:
                     out.print("<script type=\"text/javascript\">");

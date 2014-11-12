@@ -23,6 +23,6 @@
 
     <bean id="databaseConnection" class="com.rplo.bioskop.model.DatabaseConnection"/>
     <bean id="member" class="com.rplo.bioskop.model.Member"/>
-    <bean id="pegawai" class="com.rplo.bioskop.model.Pegawai"/>
+    <bean id="pegawai" class="com.rplo.bioskop.model.DataPegawai"/>
     <bean id="studioBioskop" class="com.rplo.bioskop.model.StudioBioskop"/>
 </beans>

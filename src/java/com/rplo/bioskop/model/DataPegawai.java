@@ -18,7 +18,7 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author Agustinus Agri
  */
-public class Pegawai {
+public class DataPegawai {
 
     private String mKodePegawai;
     private String mUsernamePegawai;
@@ -38,7 +38,7 @@ public class Pegawai {
         OPERATOR, ADMIN;
     }
 
-    public Pegawai() {
+    public DataPegawai() {
     }
 
     public String getmKodePegawai() {
@@ -113,7 +113,7 @@ public class Pegawai {
         this.mRolePegawai = mRolePegawai;
     }
 
-    public static void simpanData(Pegawai pPegawai) {
+    public static void simpanData(DataPegawai pPegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -133,9 +133,9 @@ public class Pegawai {
                 });
     }
 
-    public static List<Pegawai> getDataList() {
+    public static List<DataPegawai> getDataList() {
         DataSource dataSource = DatabaseConnection.getmDataSource();
-        List<Pegawai> pegawaiList = new ArrayList<Pegawai>();
+        List<DataPegawai> pegawaiList = new ArrayList<DataPegawai>();
 
         String sql = "SELECT * FROM pegawai";
 
@@ -155,7 +155,7 @@ public class Pegawai {
      */
     public static int validateLoginCredential(String pUsername, String pPassword) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
-        List<Pegawai> pegawaiList = new ArrayList<Pegawai>();
+        List<DataPegawai> pegawaiList = new ArrayList<DataPegawai>();
 
         String sql = "SELECT * FROM pegawai WHERE username_pegawai = \'" + pUsername.toUpperCase() + "\'";
 
@@ -183,7 +183,7 @@ public class Pegawai {
         }
     }
 
-    public static void updateData(Pegawai pPegawai) {
+    public static void updateData(DataPegawai pPegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
 
         String sql = "UPDATE pegawai SET "
@@ -220,21 +220,21 @@ public class Pegawai {
         jdbcTemplate.update(sql);
     }
 
-    public static class PegawaiRowMapper implements RowMapper<Pegawai> {
+    public static class PegawaiRowMapper implements RowMapper<DataPegawai> {
 
         @Override
-        public Pegawai mapRow(ResultSet rs, int i) throws SQLException {
+        public DataPegawai mapRow(ResultSet rs, int i) throws SQLException {
             PegawaiExtractor pegawaiExtractor = new PegawaiExtractor();
             return pegawaiExtractor.extractData(rs);
         }
 
     }
 
-    public static class PegawaiExtractor implements ResultSetExtractor<Pegawai> {
+    public static class PegawaiExtractor implements ResultSetExtractor<DataPegawai> {
 
         @Override
-        public Pegawai extractData(ResultSet rs) throws SQLException, DataAccessException {
-            Pegawai pegawai = new Pegawai();
+        public DataPegawai extractData(ResultSet rs) throws SQLException, DataAccessException {
+            DataPegawai pegawai = new DataPegawai();
 
             pegawai.setmKodePegawai(rs.getString(1));
             pegawai.setmUsernamePegawai(rs.getString(2));
