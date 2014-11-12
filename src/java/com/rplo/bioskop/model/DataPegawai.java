@@ -143,6 +143,18 @@ public class DataPegawai {
         pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper());
         return pegawaiList;
     }
+    
+    public static List<DataPegawai> getDataListByUsername (String pUsername)
+    {
+        DataSource dataSource = DatabaseConnection.getmDataSource();
+        List<DataPegawai> pegawaiList = new ArrayList<DataPegawai>();
+
+        String sql = "SELECT nama_pegawai FROM pegawai WHERE username_pegawai = '"+ pUsername+"'";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper());
+        return pegawaiList;
+    }
 
     /**
      * Memvalidasi login user, akan mengembalikan nilai int sesuai dengan hasil
