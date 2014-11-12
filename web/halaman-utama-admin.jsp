@@ -7,20 +7,19 @@
 <!DOCTYPE html>
 <html>
     <%if (session.getAttribute("username") == null) {
-        out.print("<script>alert(\"You don't have permission to access this page\");</script>");
-    
-//    response.sendRedirect("home.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-            rd.forward(request, response);
-        }
-        if (request.getParameter("logoutAd") != null) {
-//            session.removeAttribute("username");
-//            session.removeAttribute("password");
-//            session.removeAttribute("name");
-//            session.invalidate();
+            out.print("<script>alert(\"You don't have permission to access this page\");</script>");
+
+            response.sendRedirect("home.jsp");
 //            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 //            rd.forward(request, response);
-//            response.sendRedirect("home.jsp");
+        }
+        if (request.getParameter("logoutAd") != null) {
+            session.removeAttribute("username");
+            session.removeAttribute("password");
+            session.removeAttribute("name");
+            session.invalidate();
+            response.sendRedirect("home.jsp");
+            return ;
         }
     %>
     <head>
@@ -91,11 +90,11 @@
         <script type="text/javascript">
 //        $('#logoutButton').click(function() {
 //        });
-        $(document).ready(function() {
-            $('.ui.dropdown')
-                    .dropdown({action: 'updateForm'});
+            $(document).ready(function() {
+                $('.ui.dropdown')
+                        .dropdown({action: 'updateForm'});
 
-        });
+            });
         </script>
     </body>
 </html>
