@@ -79,9 +79,7 @@
         <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('.ui.dropdown')
-                        .dropdown({action: 'updateForm'});
-
+            $('.ui.dropdown').dropdown();
             });
         </script>
     </body>

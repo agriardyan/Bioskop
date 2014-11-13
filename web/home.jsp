@@ -17,6 +17,8 @@
         }
 
         if (null != request.getParameter("commit")) {
+            session = request.getSession(true);
+            session.setMaxInactiveInterval(60 * 60 * 24);
             int login = DataPegawai.validateLoginCredential(request.getParameter("username"), request.getParameter("password"), request.getParameter("commit"));
             switch (login) {
                 case 0:
@@ -61,10 +63,10 @@
                 <a class="active item" href="home.jsp">
                     <i class="home icon"></i> HOME
                 </a>
-                <a class="item" href="nowplaying.html">
+                <a class="item" href="halaman-daftar-penayangan-film.jsp">
                     <i class="video icon"></i> NOW PLAYING
                 </a>
-                <a class="item" href="m-tix.html">
+                <a class="item" href="halaman-signin-member.jsp">
                     <i class="user icon"></i> M-TIX
                 </a>
                 <div class="right menu">
@@ -78,7 +80,7 @@
             <!--Login Sidebar-->
             <div class="ui black small floating vertical right sidebar menu" id="loginSidebar">
                 <div class="item">
-                    <form class="ui form segment" method="POST" id="sideLogin">
+                    <form class="ui form segment" method="POST">
                         <div class="field">
                             <div class="ui blue ribbon label">Username</div>
                             <div class="ui left labeled icon input">
@@ -150,10 +152,6 @@
         <script src="bxslider/jquery.bxslider.js" type="text/javascript"></script>
         <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
-            //Reset login sidebar value when reload
-            var originalState = $('#sideLogin').clone();
-            $('#sideLogin').replaceWith(originalState);
-
             $(document).ready(function() {
                 //Slideshow 1
                 $('#slider1').bxSlider({
