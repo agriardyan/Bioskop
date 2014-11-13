@@ -96,6 +96,7 @@
                             </div>
                         </div>
                         <div class="field">
+                            <div class="ui blue ribbon label">Connect as</div>
                             <div class="ui two fluid red tiny buttons">
                                 <input class="ui button" type="submit" name="commit" value="ADMIN">
                                 <div class="or"></div>
