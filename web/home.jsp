@@ -4,7 +4,6 @@
     Author     : Lorencius
 --%>
 
-<%@page import="com.rplo.bioskop.model.DatabaseConnection"%>
 <%@page import="com.rplo.bioskop.model.DataPegawai"%>
 <!DOCTYPE html>
 <html>
@@ -16,11 +15,9 @@
                 response.sendRedirect("halaman-utama-operator.jsp");
             }
         }
-        
+
         if (null != request.getParameter("commit")) {
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            RequestDispatcher rd;
-            int login = DataPegawai.validateLoginCredential(request.getParameter("username"), request.getParameter("password"));
+            int login = DataPegawai.validateLoginCredential(request.getParameter("username"), request.getParameter("password"), request.getParameter("commit"));
             switch (login) {
                 case 0:
                     out.print("<script type=\"text/javascript\">");
@@ -50,12 +47,10 @@
             }
         }
     %>
-
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>OM-ITEM</title>
-        <link rel="shortcut icon" href="img/Deep_User.png" type="image/png">
+        <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
         <link href="bxslider/jquery.bxslider.css" rel="stylesheet" type="text/css">
     </head>
@@ -99,15 +94,11 @@
                             </div>
                         </div>
                         <div class="field">
-                            <select class="ui selection dropdown" name="role" id="role">
-                                <option value="">Connect as</option>
-                                <option value="ADMIN">ADMIN</option>
-                                <option value="OPERATOR">OPERATOR</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <input class="ui tiny red submit button" type="submit" name="commit" value="LOGIN">
-                            <!--<div class="ui error message"></div>-->
+                            <div class="ui two fluid red tiny buttons">
+                                <input class="ui button" type="submit" name="commit" value="ADMIN">
+                                <div class="or"></div>
+                                <input class="ui button" type="submit" name="commit" value="OPERATOR">
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -122,7 +113,7 @@
                             BENEFIT
                         </h4>
                         <div class="ui segment attached">
-                            <!--(Lia) Benefit info <img>-->
+                            <img src="img/OMitem_Benefit.png" style="width: 90%">
                         </div>
                     </div>
                     <div class="ten wide column">
