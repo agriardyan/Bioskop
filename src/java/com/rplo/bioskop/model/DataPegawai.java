@@ -31,7 +31,7 @@ public class DataPegawai {
     private String mRolePegawai;
 
     /**
-     * 1 : PEGAWAI 2 : ADMIN
+     * 1 : OPERATOR 2 : ADMIN
      */
     public enum ROLE {
 
@@ -162,10 +162,11 @@ public class DataPegawai {
      *
      * @param pUsername username yang diinputkan user
      * @param pPassword password yang diinputkan user
+     * @param pRole role yang dipilih user
      * @return 0 - unregistered username; 1 - wrong username/password; 2 - login
      * as PEGAWAI accepted; 3 - login as ADMIN accepted;
      */
-    public static int validateLoginCredential(String pUsername, String pPassword) {
+    public static int validateLoginCredential(String pUsername, String pPassword, String pRole) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List<DataPegawai> pegawaiList = new ArrayList<DataPegawai>();
 
@@ -178,7 +179,7 @@ public class DataPegawai {
             String username = pegawaiList.get(0).getmUsernamePegawai();
             String password = pegawaiList.get(0).getmPaswordPegawai();
             String role = pegawaiList.get(0).getmRolePegawai();
-            if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password)) {
+            if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password) && pRole.equals(role)) {
                 System.out.println("ROLE : " + role);
                 if (role.equals(ROLE.OPERATOR.toString())) {
                     return 2;
@@ -186,7 +187,7 @@ public class DataPegawai {
                     return 3;
                 }
             } else {
-                System.out.println("WRONG USERNAME/PASSWORD");
+                System.out.println("WRONG USERNAME/PASSWORD/ROLE");
                 return 1;
             }
         } else {
