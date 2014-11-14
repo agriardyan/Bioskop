@@ -4,9 +4,30 @@
     Author     : Lorencius
 --%>
 
+<%@page import="com.rplo.bioskop.model.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        if (session.getAttribute("mName") != null) {
+            response.sendRedirect("halaman-pesan-tiket.jsp");
+        }
+
+        if (null != request.getParameter("commit")) {
+            session = request.getSession(true);
+            session.setMaxInactiveInterval(60 * 60 * 24);
+            boolean login = Member.validateLoginCredential(request.getParameter("username"), request.getParameter("password"));
+            if (login == true) {
+                session.setAttribute("mName", request.getParameter("username"));
+                session.setAttribute("mUsername", request.getParameter("username"));
+                response.sendRedirect("halaman-pesan-tiket.jsp");
+            } else {
+                out.print("<script type=\"text/javascript\">");
+                out.print("alert(\"Username or Password was incorrect\");");
+                out.print("</script>");
+            }
+        }
+    %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>OM-ITEM</title>
@@ -29,41 +50,47 @@
         <!--End of Menu bar-->
 
         <!--Main body-->
-        <p>You have to sign in. <br> Fill the form with your User ID and Password if you are already a member of our M-TIX program
-            then do sign in by clicking the Sign in button. <br> For further information you can read our FAQ, and if you are facing a problem please contact 
-            our Administrator.
-        </p>
+        <div class="ui error message">
+            <div class="header">
+                You have to sign in
+            </div>
+            <p>Fill the form with your User ID and Password if you are already a member of our M-TIX program
+                then do sign in by clicking the Sign in button. <br> For further information you can read our FAQ, and if you are facing a problem please contact 
+                our Administrator.
+            </p>
+        </div>
         <div class="ui grid">
             <div class="four wide column">
                 <h4 class="ui top center aligned attached inverted red block header">
                     SIGN IN
                 </h4>
-                <div class="ui form segment attached" id="mtixSignin">
-                    <div class="field">
-                        <div class="ui blue ribbon label">Username</div>
-                        <div class="ui left labeled icon input">
-                            <input id="username" type="text">
-                            <i class="user icon"></i>
+                <form method="POST">
+                    <div class="ui form segment attached" id="mtixSignin">
+                        <div class="field">
+                            <div class="ui blue ribbon label">Username</div>
+                            <div class="ui left labeled icon input">
+                                <input name="username" type="text">
+                                <i class="user icon"></i>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui blue ribbon label">Password</div>
+                            <div class="ui left labeled icon input">
+                                <input name="password" type="password">
+                                <i class="lock icon"></i>
+                            </div>
+                        </div>
+<!--                        <div class="inline field">
+                            <div class="ui checkbox">
+                                <input id="remember" type="checkbox">
+                                <label for="remember"> Remember me </label>
+                            </div>
+                        </div>-->
+                        <div class="field">
+                            <input class="ui tiny red submit button" type="submit" name="commit" value="Sign in">
                         </div>
                     </div>
-                    <div class="field">
-                        <div class="ui blue ribbon label">Password</div>
-                        <div class="ui left labeled icon input">
-                            <input id="password" type="password">
-                            <i class="lock icon"></i>
-                        </div>
-                    </div>
-                    <div class="inline field">
-                        <div class="ui checkbox">
-                            <input id="remember" type="checkbox">
-                            <label for="remember"> Remember me </label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui tiny red submit button"> Sign in </div>
-<!--                        <div class="ui error message"></div>-->
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
         <!--End of Main body-->

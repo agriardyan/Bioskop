@@ -7,10 +7,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        if (request.getParameter("logoutAd") != null) {
+            session.removeAttribute("mName");
+            session.removeAttribute("mUsername");
+            session.invalidate();
+            response.sendRedirect("home.jsp");
+            return;
+        }
+    %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>OM-ITEM</title>
-        <link rel="shortcut icon" href="img/Deep_User.png" type="image/png">
+        <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -18,22 +27,24 @@
             <!--Menu bar-->
             <div class="ui menu">
                 <div class="right menu">
-                    <div class="ui selection dropdown link item">
-                        <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <table class="ui basic table">
-                                <tr>
-                                    <td>Nama</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                            <a class="item"><i class="sign out icon"></i>Logout</a>
+                    <form method="POST">
+                        <div class="ui selection dropdown link item">
+                            <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <table class="ui basic table">
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td><%out.print(session.getAttribute("mName"));%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td><%out.print(session.getAttribute("mUsername"));%></td>
+                                    </tr>
+                                </table>
+                                <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -49,7 +60,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.ui.dropdown')
-                        .dropdown({action: 'updateForm'});
+                        .dropdown();
             });
         </script>
     </body>
