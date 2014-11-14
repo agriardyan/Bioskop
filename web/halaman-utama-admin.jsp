@@ -70,11 +70,13 @@
                                 <table class="ui basic table">
                                     <tr>
                                         <td>Nama</td>
-                                        <td><%out.print(session.getAttribute("name"));%></td>
+                                        <td>${name}</td>
+                                        <!--td><% //out.print(session.getAttribute("name"));%></td-->
                                     </tr>
                                     <tr>
                                         <td>ID</td>
-                                        <td><%out.print(session.getAttribute("username"));%></td>
+                                        <td>${username}</td>
+                                        <!--td><% //out.print(session.getAttribute("username"));%></td-->
                                     </tr>
                                 </table>
                                 <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
