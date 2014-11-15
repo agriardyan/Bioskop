@@ -40,11 +40,11 @@
         <div class="ui container">
 
             <!--Menu bar-->
-            <div class="ui red inverted menu">
-                <a class="item" href="#">
+            <div class="ui menu">
+                <a class="item" href="halaman-pesan-tiket.jsp">
                     <i class="ticket icon"></i> JUAL TIKET
                 </a>
-                <a class="item" href="#">
+                <a class="item" href="halaman-cetak-tiket.jsp">
                     <i class="print icon"></i> CETAK TIKET
                 </a>
                 <div class="right menu">
