@@ -40,26 +40,26 @@
     <body>
         <div class="ui container">
             <!--Menu bar-->
-            <div class="ui menu">
+            <div class="ui red inverted menu">
                 <div class="ui pointing dropdown link item">
                     <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item" href="home.jsp"><i class="add icon"></i>Tambah Member</a>
-                        <a class="item"><i class="edit icon"></i>Edit Member</a>
-                        <a class="item"><i class="dollar icon"></i>Tambah Saldo</a>
+                        <a class="item" href="#"><i class="add icon"></i>Tambah Member</a>
+                        <a class="item" href="#"><i class="edit icon"></i>Edit Member</a>
+                        <a class="item" href="#"><i class="dollar icon"></i>Tambah Saldo</a>
                     </div>
                 </div>
                 <a class="item" href="#">
                     <i class="play icon"></i> BUAT JADWAL
                 </a>
-                <a class="item" href="#">
+                <a class="item" href="halaman-tambah-film.jsp">
                     <i class="video icon"></i> TAMBAH FILM
                 </a>
                 <div class="ui pointing dropdown link item">
                     <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item"><i class="dollar icon"></i>Penerimaan Uang</a>
-                        <a class="item"><i class="ticket icon"></i>Penjualan Tiket</a>
+                        <a class="item" href="#"><i class="dollar icon"></i>Penerimaan Uang</a>
+                        <a class="item" href="#"><i class="ticket icon"></i>Penjualan Tiket</a>
                     </div>
                 </div>
                 <div class="right menu">

@@ -25,7 +25,7 @@
     <body>
         <div class="ui container">
             <!--Menu bar-->
-            <div class="ui menu">
+            <div class="ui red inverted menu">
                 <div class="right menu">
                     <form method="POST">
                         <div class="ui selection dropdown link item">

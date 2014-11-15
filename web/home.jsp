@@ -57,9 +57,9 @@
         <link href="bxslider/jquery.bxslider.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="ui container" style="min-width: 800px">
+        <div class="ui container">
             <!--Menu bar-->
-            <div class="ui menu">
+            <div class="ui red inverted menu">
                 <a class="active item" href="home.jsp">
                     <i class="home icon"></i> HOME
                 </a>

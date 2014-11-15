@@ -40,8 +40,8 @@
         <div class="ui container">
 
             <!--Menu bar-->
-            <div class="ui menu">
-                <a class="active item" href="#">
+            <div class="ui red inverted menu">
+                <a class="item" href="#">
                     <i class="ticket icon"></i> JUAL TIKET
                 </a>
                 <a class="item" href="#">
