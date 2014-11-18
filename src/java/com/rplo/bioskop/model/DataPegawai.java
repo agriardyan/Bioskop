@@ -143,13 +143,12 @@ public class DataPegawai {
         pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper());
         return pegawaiList;
     }
-    
-    public static List<DataPegawai> getDataListByUsername (String pUsername)
-    {
+
+    public static List<DataPegawai> getDataListByUsername(String pUsername) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List<DataPegawai> pegawaiList = new ArrayList<DataPegawai>();
 
-        String sql = "SELECT nama_pegawai FROM pegawai WHERE username_pegawai = '"+ pUsername+"'";
+        String sql = "SELECT nama_pegawai FROM pegawai WHERE username_pegawai = '" + pUsername + "'";
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper());
@@ -194,7 +193,7 @@ public class DataPegawai {
             System.out.println("UNREGISTERED USERNAME");
             return 0;
         }
-        
+
         return -1;
     }
 
@@ -230,9 +229,10 @@ public class DataPegawai {
     public static void deleteData(String pKodePegawai) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
 
-        String sql = "DELETE FROM pegawai WHERE kode_pegawai = \'" + pKodePegawai + "\'";
+        String sql = "DELETE FROM pegawai WHERE kode_pegawai = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.update(sql);
+        jdbcTemplate.update(sql, 
+                new Object[]{pKodePegawai});
     }
 
     public static class PegawaiRowMapper implements RowMapper<DataPegawai> {

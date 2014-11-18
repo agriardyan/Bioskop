@@ -7,6 +7,7 @@
 package com.rplo.bioskop.testPackage;
 
 import com.rplo.bioskop.model.DataPegawai;
+import com.rplo.bioskop.model.DatabaseConnection;
 import java.util.List;
 
 /**
@@ -16,6 +17,9 @@ import java.util.List;
 public class TestClass {
     
     public static void main(String[] args) {
+        
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        
         int validateLoginCredential = DataPegawai.validateLoginCredential("p001", "P001", "ADMIN");
         
         System.out.println("LOGIN STATUS : "+validateLoginCredential);
