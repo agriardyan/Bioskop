@@ -44,22 +44,22 @@
                 <div class="ui pointing dropdown link item">
                     <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item" href="home.jsp"><i class="add icon"></i>Tambah Member</a>
-                        <a class="item"><i class="edit icon"></i>Edit Member</a>
-                        <a class="item"><i class="dollar icon"></i>Tambah Saldo</a>
+                        <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
+                        <a class="item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
+                        <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
                     </div>
                 </div>
-                <a class="item" href="#">
+                <a class="item" href="halaman-jadwal-penayangan-film.jsp">
                     <i class="play icon"></i> BUAT JADWAL
                 </a>
-                <a class="item" href="#">
+                <a class="item" href="halaman-tambah-film.jsp">
                     <i class="video icon"></i> TAMBAH FILM
                 </a>
                 <div class="ui pointing dropdown link item">
                     <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item"><i class="dollar icon"></i>Penerimaan Uang</a>
-                        <a class="item"><i class="ticket icon"></i>Penjualan Tiket</a>
+                        <a class="item" href="halaman-report-penerimaan-uang.jsp"><i class="dollar icon"></i>Penerimaan Uang</a>
+                        <a class="item" href="halaman-report-penjualan-tiket.jsp"><i class="ticket icon"></i>Penjualan Tiket</a>
                     </div>
                 </div>
                 <div class="right menu">
@@ -70,11 +70,13 @@
                                 <table class="ui basic table">
                                     <tr>
                                         <td>Nama</td>
-                                        <td><%out.print(session.getAttribute("name"));%></td>
+                                        <td>${name}</td>
+                                        <!--td><% //out.print(session.getAttribute("name"));%></td-->
                                     </tr>
                                     <tr>
                                         <td>ID</td>
-                                        <td><%out.print(session.getAttribute("username"));%></td>
+                                        <td>${username}</td>
+                                        <!--td><% //out.print(session.getAttribute("username"));%></td-->
                                     </tr>
                                 </table>
                                 <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">

@@ -36,7 +36,7 @@
     </head>
     <body>
         <!--Menu bar-->
-        <div class="ui menu">
+        <div class="ui red inverted menu">
             <a class="item" href="home.jsp">
                 <i class="home icon"></i> HOME
             </a>
