@@ -40,18 +40,18 @@
         <link href="date/redmond.datepick.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="ui container">
-            <!--Menu bar-->
-            <div class="ui menu">
-                <div class="ui pointing dropdown link item">
-                    <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
-                        <a class="active item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
-                        <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
-                    </div>
+        <!--<div class="ui container">-->
+        <!--Menu bar-->
+        <div class="ui menu">
+            <div class="ui pointing dropdown link item">
+                <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
+                    <a class="active item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
+                    <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
                 </div>
             </div>
+            <!--</div>-->
             <a class="item" href="#">
                 <i class="play icon"></i> BUAT JADWAL
             </a>
@@ -64,23 +64,23 @@
                     <a class="item" href="#"><i class="dollar icon"></i>Penerimaan Uang</a>
                     <a class="item" href="#"><i class="ticket icon"></i>Penjualan Tiket</a>
                 </div>
-                <div class="right menu">
-                    <form method="POST">
-                        <div class="ui selection dropdown link item">
-                            <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <table class="ui basic table">
-                                    <tr>
-                                        <td>Nama</td>
-                                        <td>${name}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>${username}</td>
-                                    </tr>
-                                </table>
-                                <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
-                            </div>
+            </div>
+            <div class="right menu">
+                <form method="POST">
+                    <div class="ui selection dropdown link item">
+                        <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <table class="ui basic table">
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>${name}</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>${username}</td>
+                                </tr>
+                            </table>
+                            <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
                         </div>
                     </div>
                 </form>
@@ -138,10 +138,18 @@
                 </div>
             </div>
         </div>
+        <!--End of Menu bar-->
+
+        <!--Main body-->
+
+        <!--End of Main body-->
+
+        <!--Script-->
         <script src="semantic-ui/packaged/javascript/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
-        <script src="date/jquery.plugin.js" type="text/javascript"></script>
-        <script src="date/jquery.datepick.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.ui.dropdown').dropdown();
             });
         </script>
     </body>
