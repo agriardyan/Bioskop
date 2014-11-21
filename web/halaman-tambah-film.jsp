@@ -8,20 +8,20 @@
 <!DOCTYPE html>
 <html>
     <%
-        if (session.getAttribute("username") != null) {
-                if (session.getAttribute("role").equals("Operator")) {
-                    out.print("<script>");
-                    out.print("alert(\"Your current session login as Operator, ");
-                    out.print("we will now redirecting you to Operator Home\");");
-                    out.print("window.location = 'halaman-utama-operator.jsp';");
-                    out.print("</script>");
-                }
-            } else {
-                out.print("<script>");
-                out.print("alert(\"You don't have permission to access this page\");");
-                out.print("window.location = 'home.jsp'");
-                out.print("</script>");
-            }
+//        if (session.getAttribute("username") != null) {
+//                if (session.getAttribute("role").equals("Operator")) {
+//                    out.print("<script>");
+//                    out.print("alert(\"Your current session login as Operator, ");
+//                    out.print("we will now redirecting you to Operator Home\");");
+//                    out.print("window.location = 'halaman-utama-operator.jsp';");
+//                    out.print("</script>");
+//                }
+//            } else {
+//                out.print("<script>");
+//                out.print("alert(\"You don't have permission to access this page\");");
+//                out.print("window.location = 'home.jsp'");
+//                out.print("</script>");
+//            }
             if (request.getParameter("logoutAd") != null) {
                 session.removeAttribute("username");
                 session.removeAttribute("password");
