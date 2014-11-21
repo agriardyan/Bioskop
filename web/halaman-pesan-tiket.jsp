@@ -7,10 +7,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%
+    <%if (session.getAttribute("username") != null) {
+            if (session.getAttribute("role").equals("Admin")) {
+                out.print("<script>");
+                out.print("alert(\"Your current session login as Administrator, ");
+                out.print("we will now redirecting you to Administrator Home\");");
+                out.print("window.location = 'halaman-utama-admin.jsp';");
+                out.print("</script>");
+            }
+        } else {
+            out.print("<script>");
+            out.print("alert(\"You don't have permission to access this page\");");
+            out.print("window.location = 'home.jsp'");
+            out.print("</script>");
+        }
+
         if (request.getParameter("logoutAd") != null) {
-            session.removeAttribute("mName");
-            session.removeAttribute("mUsername");
+            session.removeAttribute("username");
+            session.removeAttribute("password");
+            session.removeAttribute("name");
+            session.removeAttribute("role");
             session.invalidate();
             response.sendRedirect("home.jsp");
             return;
@@ -24,21 +40,29 @@
     </head>
     <body>
         <div class="ui container">
+
             <!--Menu bar-->
-            <div class="ui red inverted menu">
+            <div class="ui menu">
+                <a class="active item" href="halaman-pesan-tiket.jsp">
+                    <i class="ticket icon"></i> JUAL TIKET
+                </a>
+                <a class="item" href="halaman-cetak-tiket.jsp">
+                    <i class="print icon"></i> CETAK TIKET
+                </a>
                 <div class="right menu">
                     <form method="POST">
                         <div class="ui selection dropdown link item">
-                            <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
+                            <i class="user icon"></i> OPERATOR <i class="dropdown icon"></i>
                             <div class="menu">
                                 <table class="ui basic table">
                                     <tr>
+
                                         <td>Nama</td>
-                                        <td><%out.print(session.getAttribute("mName"));%></td>
+                                        <td>${name}</td>
                                     </tr>
                                     <tr>
                                         <td>ID</td>
-                                        <td><%out.print(session.getAttribute("mUsername"));%></td>
+                                        <td>${username}</td>
                                     </tr>
                                 </table>
                                 <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
@@ -59,8 +83,7 @@
         <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('.ui.dropdown')
-                        .dropdown();
+                $('.ui.dropdown').dropdown();
             });
         </script>
     </body>

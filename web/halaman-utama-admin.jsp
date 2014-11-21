@@ -71,12 +71,10 @@
                                     <tr>
                                         <td>Nama</td>
                                         <td>${name}</td>
-                                        <!--td><% //out.print(session.getAttribute("name"));%></td-->
                                     </tr>
                                     <tr>
                                         <td>ID</td>
                                         <td>${username}</td>
-                                        <!--td><% //out.print(session.getAttribute("username"));%></td-->
                                     </tr>
                                 </table>
                                 <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
