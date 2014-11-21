@@ -40,7 +40,7 @@
     </head>
     <body>
         <!--Menu bar-->
-        <div class="ui red inverted menu">
+        <div class="ui menu">
             <div class="ui pointing dropdown link item">
                 <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
                 <div class="menu">

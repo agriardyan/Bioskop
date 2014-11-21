@@ -18,7 +18,6 @@
 
         if (null != request.getParameter("commit")) {
             session = request.getSession(true);
-            session.setMaxInactiveInterval(60 * 60 * 24);
             int login = DataPegawai.validateLoginCredential(request.getParameter("username"), request.getParameter("password"), request.getParameter("commit"));
             switch (login) {
                 case 0:
@@ -80,18 +79,18 @@
             <!--Login Sidebar-->
             <div class="ui black small floating vertical right sidebar menu" id="loginSidebar">
                 <div class="item">
-                    <form class="ui form segment" method="POST">
+                    <form class="ui form segment" method="POST" id="sideLogin">
                         <div class="field">
                             <div class="ui blue ribbon label">Username</div>
                             <div class="ui left labeled icon input">
-                                <input name="username" id="username" type="text" placeholder="Username">
+                                <input name="username" id="user" type="text" placeholder="Username">
                                 <i class="user icon"></i>
                             </div>
                         </div>
                         <div class="field">
                             <div class="ui blue ribbon label">Password</div>
                             <div class="ui left labeled icon input">
-                                <input name="password" id="password" type="password" placeholder="Password">
+                                <input name="password" id="pass" type="password" placeholder="Password">
                                 <i class="lock icon"></i>
                             </div>
                         </div>
@@ -187,7 +186,7 @@
                 //Login sidebar error prompt
                 $("#sideLogin").form({
                     username: {
-                        identifier: 'username',
+                        identifier: 'user',
                         rules: [
                             {
                                 type: 'empty',
@@ -196,21 +195,13 @@
                         ]
                     },
                     password: {
-                        identifier: 'password',
+                        identifier: 'pass',
                         rules: [
                             {
                                 type: 'empty',
                                 prompt: 'Please enter a password'
                             }
                         ]
-                    },
-                    dropdownValue: {
-                        identifier: 'role',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Please choose a role'
-                            }]
                     }
                 }, {
                     on: 'blur',
