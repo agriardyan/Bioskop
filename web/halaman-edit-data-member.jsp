@@ -43,50 +43,47 @@
 
         <div class="ui container">
             <!--Menu bar-->
-            <div class="ui menu">
-                <div class="ui pointing dropdown link item">
-                    <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
-                        <a class="item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
-                        <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
-                    </div>
+            <div class="ui red inverted menu">
+            <div class="ui pointing dropdown link item">
+                <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="#"><i class="add icon"></i>Tambah Member</a>
+                    <a class="active item" href="#"><i class="edit icon"></i>Edit Member</a>
+                    <a class="item" href="#"><i class="dollar icon"></i>Tambah Saldo</a>
                 </div>
-                <a class="item" href="halaman-jadwal-penayangan-film.jsp">
-                    <i class="play icon"></i> BUAT JADWAL
-                </a>
-                <a class="item" href="halaman-tambah-film.jsp">
-                    <i class="video icon"></i> TAMBAH FILM
-                </a>
-                <div class="ui pointing dropdown link item">
-                    <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a class="item" href="halaman-report-penerimaan-uang.jsp"><i class="dollar icon"></i>Penerimaan Uang</a>
-                        <a class="item" href="halaman-report-penjualan-tiket.jsp"><i class="ticket icon"></i>Penjualan Tiket</a>
-                    </div>
+            </div>
+            <a class="item" href="#">
+                <i class="play icon"></i> BUAT JADWAL
+            </a>
+            <a class="item" href="halaman-tambah-film.jsp">
+                <i class="video icon"></i> TAMBAH FILM
+            </a>
+            <div class="ui pointing dropdown link item">
+                <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="#"><i class="dollar icon"></i>Penerimaan Uang</a>
+                    <a class="item" href="#"><i class="ticket icon"></i>Penjualan Tiket</a>
                 </div>
-                <div class="right menu">
-                    <form method="POST">
-                        <div class="ui selection dropdown link item">
-                            <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <table class="ui basic table">
-                                    <tr>
-                                        <td>Nama</td>
-                                        <td>${name}</td>
-                                        <!--td><% //out.print(session.getAttribute("name"));%></td-->
-                                    </tr>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>${username}</td>
-                                        <!--td><% //out.print(session.getAttribute("username"));%></td-->
-                                    </tr>
-                                </table>
-                                <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
-                            </div>
+            </div>
+            <div class="right menu">
+                <form method="POST">
+                    <div class="ui selection dropdown link item">
+                        <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <table class="ui basic table">
+                                <tr>
+                                    <td>Nama</td>
+                                    <td><%out.print(session.getAttribute("name"));%></td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td><%out.print(session.getAttribute("username"));%></td>
+                                </tr>
+                            </table>
+                            <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
         <!--End of Menu bar-->
@@ -151,8 +148,12 @@
         <script type="text/javascript"> 
             $(document).ready(function (){
                 $('#datepicker').datepick();
+                $('.ui.dropdown').dropdown();
             });
-        
+            
+                
+
+                
         </script>
         
     </body>
