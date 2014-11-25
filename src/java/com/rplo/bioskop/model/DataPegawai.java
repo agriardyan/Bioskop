@@ -174,7 +174,7 @@ public class DataPegawai {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper());
 
-        if (pegawaiList.get(0) != null) {
+        if (!pegawaiList.isEmpty()) {
             String username = pegawaiList.get(0).getmUsernamePegawai();
             String password = pegawaiList.get(0).getmPaswordPegawai();
             String role = pegawaiList.get(0).getmRolePegawai();
