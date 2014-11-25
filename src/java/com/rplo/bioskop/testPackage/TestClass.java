@@ -20,7 +20,7 @@ public class TestClass {
         
         DatabaseConnection databaseConnection = new DatabaseConnection();
         
-        int validateLoginCredential = DataPegawai.validateLoginCredential("p009", "P009", "ADMIN");
+        int validateLoginCredential = DataPegawai.validateLoginCredential("p001", "P001", "ADMIN");
         
         System.out.println("LOGIN STATUS : "+validateLoginCredential);
         
