@@ -24,11 +24,11 @@ public class TestClass {
         
         System.out.println("LOGIN STATUS : "+validateLoginCredential);
         
-        List<DataPegawai> dataList = DataPegawai.getDataList();
-        
-        for (int i = 0; i < dataList.size(); i++) {
-            System.out.println(dataList.get(i).getmNamaPegawai()+" ");
-        }
+//        List<DataPegawai> dataList = DataPegawai.getDataList();
+//        
+//        for (int i = 0; i < dataList.size(); i++) {
+//            System.out.println(dataList.get(i).getmNamaPegawai()+" ");
+//        }
     }
     
 }

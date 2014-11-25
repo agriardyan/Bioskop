@@ -29,68 +29,63 @@
         }
     %>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>OM-ITEM</title>
+        <title>Sign in M-Tix</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Menu bar-->
-        <div class="ui red inverted menu">
-            <a class="item" href="home.jsp">
-                <i class="home icon"></i> HOME
-            </a>
-            <a class="item" href="halaman-daftar-penayangan-film.jsp">
-                <i class="video icon"></i> NOW PLAYING
-            </a>
-            <a class="active item" href="halaman-signin-member.jsp">
-                <i class="user icon"></i> M-TIX
-            </a>
+        <div class="container">
+            <div class="ui red inverted menu">
+                <a class="item" href="home.jsp">
+                    <i class="home icon"></i> HOME
+                </a>
+                <a class="item" href="halaman-daftar-penayangan-film.jsp">
+                    <i class="video icon"></i> NOW PLAYING
+                </a>
+                <a class="active item" href="halaman-signin-member.jsp">
+                    <i class="user icon"></i> M-TIX
+                </a>
+            </div>
         </div>
         <!--End of Menu bar-->
 
         <!--Main body-->
-        <div class="ui error message">
-            <div class="header">
-                You have to sign in
+        <div class="main container">
+            <div class="ui error message">
+                <div class="header">
+                    You have to sign in
+                </div>
+                <p>Fill the form with your User ID and Password if you are already a member of our M-TIX program
+                    then do sign in by clicking the Sign in button. <br> If you are facing a problem please contact 
+                    our Administrator.
+                </p>
             </div>
-            <p>Fill the form with your User ID and Password if you are already a member of our M-TIX program
-                then do sign in by clicking the Sign in button. <br> For further information you can read our FAQ, and if you are facing a problem please contact 
-                our Administrator.
-            </p>
-        </div>
-        <div class="ui grid">
-            <div class="four wide column">
-                <h4 class="ui top center aligned attached inverted red block header">
-                    SIGN IN
-                </h4>
-                <form method="POST">
-                    <div class="ui form segment attached" id="mtixSignin">
+            <div class="ui grid">
+                <div class="four wide column">
+                    <h4 class="ui top center aligned attached inverted red block header">
+                        SIGN IN
+                    </h4>
+                    <form class="ui form segment attached" id="mtixSignin">
                         <div class="field">
                             <div class="ui blue ribbon label">Username</div>
                             <div class="ui left labeled icon input">
-                                <input name="username" type="text">
+                                <input name="username" type="text" placeholder="Username">
                                 <i class="user icon"></i>
                             </div>
                         </div>
                         <div class="field">
                             <div class="ui blue ribbon label">Password</div>
                             <div class="ui left labeled icon input">
-                                <input name="password" type="password">
+                                <input name="password" type="password" placeholder="Password">
                                 <i class="lock icon"></i>
                             </div>
                         </div>
-<!--                        <div class="inline field">
-                            <div class="ui checkbox">
-                                <input id="remember" type="checkbox">
-                                <label for="remember"> Remember me </label>
-                            </div>
-                        </div>-->
                         <div class="field">
                             <input class="ui tiny red submit button" type="submit" name="commit" value="Sign in">
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
         <!--End of Main body-->
@@ -110,7 +105,7 @@
                         rules: [
                             {
                                 type: 'empty',
-                                prompt: 'Please enter a username'
+                                prompt: 'Masukkan username'
                             }
                         ]
                     },
@@ -119,7 +114,7 @@
                         rules: [
                             {
                                 type: 'empty',
-                                prompt: 'Please enter a password'
+                                prompt: 'Masukkan password'
                             }
                         ]
                     }

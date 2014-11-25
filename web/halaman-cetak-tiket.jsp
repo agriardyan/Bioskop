@@ -21,7 +21,7 @@
             out.print("window.location = 'home.jsp'");
             out.print("</script>");
         }
-    
+
         if (request.getParameter("logoutAd") != null) {
             session.removeAttribute("username");
             session.removeAttribute("password");
@@ -33,16 +33,14 @@
         }
     %>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>OM-ITEM</title>
+        <title>Cetak Tiket</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="ui container">
-
-            <!--Menu bar-->
-            <div class="ui menu">
+        <!--Menu bar-->
+        <div class="ui menu">
+            <div class="ui container">
                 <a class="item" href="halaman-pesan-tiket.jsp">
                     <i class="ticket icon"></i> JUAL TIKET
                 </a>
@@ -51,12 +49,11 @@
                 </a>
                 <div class="right menu">
                     <form method="POST">
-                        <div class="ui selection dropdown link item">
+                        <div class="ui dropdown link item">
                             <i class="user icon"></i> OPERATOR <i class="dropdown icon"></i>
                             <div class="menu">
                                 <table class="ui basic table">
                                     <tr>
-
                                         <td>Nama</td>
                                         <td>${name}</td>
                                     </tr>

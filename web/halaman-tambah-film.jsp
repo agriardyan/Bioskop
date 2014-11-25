@@ -33,88 +33,94 @@
         }
     %>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>OM-ITEM</title>
+        <title>Tambah Film</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Menu bar-->
         <div class="ui menu">
-            <div class="ui pointing dropdown link item">
-                <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
-                    <a class="item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
-                    <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
-                </div>
-            </div>
-            <a class="item" href="halaman-jadwal-penayangan-film.jsp">
-                <i class="play icon"></i> BUAT JADWAL
-            </a>
-            <a class="active item" href="halaman-tambah-film.jsp">
-                <i class="video icon"></i> TAMBAH FILM
-            </a>
-            <div class="ui pointing dropdown link item">
-                <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a class="item" href="halaman-report-penerimaan-uang.jsp"><i class="dollar icon"></i>Penerimaan Uang</a>
-                    <a class="item" href="halaman-report-penjualan-tiket.jsp"><i class="ticket icon"></i>Penjualan Tiket</a>
-                </div>
-            </div>
-            <div class="right menu">
-                <form method="POST">
-                    <div class="ui selection dropdown link item">
-                        <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <table class="ui basic table">
-                                <tr>
-                                    <td>Nama</td>
-                                    <td><%out.print(session.getAttribute("name"));%></td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td><%out.print(session.getAttribute("username"));%></td>
-                                </tr>
-                            </table>
-                            <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
-                        </div>
+            <div class="container">
+                <div class="ui pointing dropdown link item">
+                    <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
+                        <a class="item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
+                        <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
                     </div>
-                </form>
+                </div>
+                <a class="item" href="halaman-jadwal-penayangan-film.jsp">
+                    <i class="play icon"></i> BUAT JADWAL
+                </a>
+                <a class="active item" href="halaman-tambah-film.jsp">
+                    <i class="video icon"></i> TAMBAH FILM
+                </a>
+                <div class="ui pointing dropdown link item">
+                    <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="halaman-report-penerimaan-uang.jsp"><i class="dollar icon"></i>Penerimaan Uang</a>
+                        <a class="item" href="halaman-report-penjualan-tiket.jsp"><i class="ticket icon"></i>Penjualan Tiket</a>
+                    </div>
+                </div>
+                <div class="right menu">
+                    <form method="POST">
+                        <div class="ui dropdown link item">
+                            <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <table class="ui basic table">
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td><%out.print(session.getAttribute("name"));%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td><%out.print(session.getAttribute("username"));%></td>
+                                    </tr>
+                                </table>
+                                <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <!--End of Menu bar-->
 
         <!--Add Film Sidebar-->
-        <div class="ui very wide floating vertical right sidebar menu" id="addSidebar">
+        <div class="ui very wide vertical right sidebar menu" id="addSidebar">
             <div class="item">
                 <form class="ui form segment" method="POST">
                     <div class="field">
-                        <div class="ui blue ribbon label">ID Film</div>
                         <input name="idfilm" type="text" placeholder="ID Film">
                     </div>
                     <div class="field">
-                        <div class="ui blue ribbon label">Judul</div>
                         <input name="judul" type="text" placeholder="Judul">
                     </div>
                     <div class="field">
-                        <div class="ui blue ribbon label">Genre</div>
                         <input name="genre" type="text" placeholder="Genre">
                     </div>
-                    <div class="inline field">
-                        <div class="ui blue ribbon label">Status</div>
-                        <div class="ui toggle checkbox">
-                            <input id="check1" type="checkbox">
-                            <label for="check1">Now Playing</label>
-                        </div>
-                        <div class="ui toggle checkbox">
-                            <input id="check2" type="checkbox">
-                            <label for="check2">Coming Soon</label>
+                    <div class="field">
+                        <div class="ui fluid selection dropdown">
+                            <input name="status" type="hidden">
+                            <div class="default text">Status</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item" data-value="np" >Now Playing</div>
+                                <div class="item" data-value="cs" >Coming Soon</div>
+                            </div>
                         </div>
                     </div>
                     <div class="field">
-                        <div class="ui blue ribbon label">Kategori</div>
-                        <div class="ui selection dropdown"></div>
+                        <div class="ui fluid selection dropdown">
+                            <input name="kategori" type="hidden">
+                            <div class="default text">Kategori</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item" data-value="dewasa" >Dewasa</div>
+                                <div class="item" data-value="remaja" >Remaja</div>
+                                <div class="item" data-value="semua" >Semua Umur</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="field">
                         <div class="ui red tiny buttons">
@@ -127,65 +133,66 @@
         <!--End of Add Film Sidebar-->
 
         <!--Film List Table-->
-        <div class="ui grid" style="width: 100%; position: absolute;">
-            <div class="row">
-                <div class="ten wide column">
-                    <h4 class="ui top attached center aligned inverted blue block header">
-                        DAFTAR FILM
-                    </h4>
-                    <table class="ui padded table segment attached" id="filmTable">
-                        <thead>
-                            <tr>
-                                <th>ID Film</th>
-                                <th>Judul</th>
-                                <th>Genre</th>
-                                <th>Status</th>
-                                <th>Kategori</th>
+        <div class="main container">
+            <div class="ui grid" style="width: 100%; position: absolute;">
+                <div class="row">
+                    <div class="ten wide column">
+                        <h4 class="ui top attached center aligned inverted blue block header">
+                            DAFTAR FILM
+                        </h4>
+                        <table class="ui padded table segment attached" id="filmTable">
+                            <thead>
+                                <tr>
+                                    <th>ID Film</th>
+                                    <th>Judul</th>
+                                    <th>Genre</th>
+                                    <th>Status</th>
+                                    <th>Kategori</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>AVG2</td>
+                                    <td>The Avenger 2</td>
+                                    <td>Action</td>
+                                    <td>Coming soon</td>
+                                    <td>Remaja</td>
+                                </tr>
+                                <tr>
+                                    <td>BH</td>
+                                    <td>Big Hero</td>
+                                    <td>Adventure</td>
+                                    <td>Coming soon</td>
+                                    <td>Semua Umur</td>
+                                </tr>
+                                <tr>
+                                    <td>SBM</td>
+                                    <td>Doraemon: Stand By Me</td>
+                                    <td>Adventure</td>
+                                    <td>Now Playing</td>
+                                    <td>Semua Umur</td>
+                                </tr>
+                                <tr>
+                                    <td>JB</td>
+                                    <td>Jessable</td>
+                                    <td>Thriller</td>
+                                    <td>Coming Soon</td>
+                                    <td>Remaja</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="5">
+                            <div class="ui blue labeled icon button" id="tambah">
+                                <i class="video icon"></i> Tambah Film
+                            </div>
+                            </th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>AVG2</td>
-                                <td>The Avenger 2</td>
-                                <td>Action</td>
-                                <td>Coming soon</td>
-                                <td>Remaja</td>
-                            </tr>
-                            <tr>
-                                <td>BH</td>
-                                <td>Big Hero</td>
-                                <td>Adventure</td>
-                                <td>Coming soon</td>
-                                <td>Semua Umur</td>
-                            </tr>
-                            <tr>
-                                <td>SBM</td>
-                                <td>Doraemon: Stand By Me</td>
-                                <td>Adventure</td>
-                                <td>Now Playing</td>
-                                <td>Semua Umur</td>
-                            </tr>
-                            <tr>
-                                <td>JB</td>
-                                <td>Jessable</td>
-                                <td>Thriller</td>
-                                <td>Coming Soon</td>
-                                <td>Remaja</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th colspan="5">
-                        <div class="ui blue labeled icon button" id="tambah">
-                            <i class="video icon"></i> Tambah Film
-                        </div>
-                        </th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <div class="six wide column">
-
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="six wide column">
+                    </div>
                 </div>
             </div>
         </div>
@@ -230,6 +237,23 @@
                             {
                                 type: 'empty',
                                 prompt: 'Masukkan Genre Film'
+                            }]
+                    },
+                    status: {
+                        identifier: 'status',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Pilih Status Film'
+                            }
+                        ]
+                    },
+                    kategori: {
+                        identifier: 'kategori',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Pilih Kategori Film'
                             }]
                     }
                 }, {
