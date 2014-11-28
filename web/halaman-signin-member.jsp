@@ -9,6 +9,8 @@
 <!DOCTYPE html>
 <html>
     <%
+        String username = "";
+
         if (session.getAttribute("mName") != null) {
             response.sendRedirect("halaman-pesan-tiket.jsp");
         }
@@ -16,16 +18,27 @@
         if (null != request.getParameter("commit")) {
             session = request.getSession(true);
             session.setMaxInactiveInterval(60 * 60 * 24);
-            boolean login = Member.validateLoginCredential(request.getParameter("username"), request.getParameter("password"));
-            if (login == true) {
-                session.setAttribute("mName", request.getParameter("username"));
-                session.setAttribute("mUsername", request.getParameter("username"));
-                response.sendRedirect("halaman-pesan-tiket.jsp");
-            } else {
-                out.print("<script type=\"text/javascript\">");
-                out.print("alert(\"Username or Password was incorrect\");");
-                out.print("</script>");
+            int login = Member.validateLoginCredential(request.getParameter("username"), request.getParameter("password"));
+
+            switch (login) {
+                case 0:
+                    out.print("<script type=\"text/javascript\">");
+                    out.print("alert(\"Unregistered username\");");
+                    out.print("</script>");
+                    break;
+                case 1:
+                    username = request.getParameter("username");
+                    out.print("<script type=\"text/javascript\">");
+                    out.print("alert(\"Username or Password was incorrect\");");
+                    out.print("</script>");
+                    break;
+                case 2:
+                    session.setAttribute("mName", request.getParameter("username"));
+                    session.setAttribute("mUsername", request.getParameter("username"));
+                    response.sendRedirect("halaman-pesan-tiket.jsp");
+                    break;
             }
+
         }
     %>
     <head>
@@ -79,6 +92,12 @@
                                 <i class="lock icon"></i>
                             </div>
                         </div>
+                        <!--                        <div class="inline field">
+                                                    <div class="ui checkbox">
+                                                        <input id="remember" type="checkbox">
+                                                        <label for="remember"> Remember me </label>
+                                                    </div>
+                                                </div>-->
                         <div class="field">
                             <input class="ui tiny red submit button" type="submit" name="commit" value="Sign in">
                         </div>
