@@ -92,12 +92,6 @@
                                 <i class="lock icon"></i>
                             </div>
                         </div>
-                        <!--                        <div class="inline field">
-                                                    <div class="ui checkbox">
-                                                        <input id="remember" type="checkbox">
-                                                        <label for="remember"> Remember me </label>
-                                                    </div>
-                                                </div>-->
                         <div class="field">
                             <input class="ui tiny red submit button" type="submit" name="commit" value="Sign in">
                         </div>
