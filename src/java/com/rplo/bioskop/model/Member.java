@@ -113,6 +113,40 @@ public class Member {
     public void setmPasswordMember(String mPasswordMember) {
         this.mPasswordMember = mPasswordMember;
     }
+    
+    /**
+     * Memvalidasi login user, akan mengembalikan nilai int sesuai dengan hasil
+     * validasi
+     *
+     * @param pUsername username yang diinputkan user
+     * @param pPassword password yang diinputkan user
+     * @return 0 - unregistered username; 1 - wrong username/password; 2 - login
+     * as MEMBER accepted;
+     */
+    public static int validateLoginCredential(String pUsername, String pPassword) {
+        DataSource dataSource = DatabaseConnection.getmDataSource();
+        List<Member> pegawaiList = new ArrayList<Member>();
+
+        String sql = "SELECT * FROM member_bioskop WHERE username_member = \'" + pUsername.toUpperCase() + "\'";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        pegawaiList = jdbcTemplate.query(sql, new MemberRowMapper());
+
+        if (!pegawaiList.isEmpty()) {
+            String username = pegawaiList.get(0).getmUsernameMember();
+            String password = pegawaiList.get(0).getmPasswordMember();
+            if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password)) {
+                System.out.println("username : " + username);
+                return 2;
+            } else {
+                System.out.println("WRONG USERNAME/PASSWORD");
+                return 1;
+            }
+        } else {
+            System.out.println("UNREGISTERED USERNAME");
+            return 0;
+        }
+    }
 
     public static void simpanData(Member pMember) {
         DataSource dataSource = DatabaseConnection.getmDataSource();
@@ -144,31 +178,6 @@ public class Member {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         memberList = jdbcTemplate.query(sql, new MemberRowMapper());
         return memberList;
-    }
-
-    public static boolean validateLoginCredential(String pUsername, String pPassword) {
-        DataSource dataSource = DatabaseConnection.getmDataSource();
-        List<Member> memberList = new ArrayList<Member>();
-
-        String sql = "SELECT * FROM member WHERE username_member = \'" + pUsername.toUpperCase() + "\'";
-
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        memberList = jdbcTemplate.query(sql, new MemberRowMapper());
-
-        if (memberList.get(0) != null) {
-            String username = memberList.get(0).getmUsernameMember();
-            String password = memberList.get(0).getmPasswordMember();
-            if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password)) {
-                System.out.println("SUKSES LOGIN MEMBER");
-                return true;
-            } else {
-                System.out.println("WRONG USERNAME/PASSWORD");
-                return false;
-            }
-        } else {
-            System.out.println("UNREGISTERED USERNAME");
-            return false;
-        }
     }
 
     public static void updateData(Member pMember) {

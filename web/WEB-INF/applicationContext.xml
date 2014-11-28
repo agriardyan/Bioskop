@@ -25,4 +25,5 @@
     <bean id="member" class="com.rplo.bioskop.model.Member"/>
     <bean id="pegawai" class="com.rplo.bioskop.model.DataPegawai"/>
     <bean id="studioBioskop" class="com.rplo.bioskop.model.StudioBioskop"/>
+    <bean id="tiket" class="com.rplo.bioskop.model.Tiket"/>
 </beans>

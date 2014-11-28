@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html>
     <%
-        if (session.getAttribute("username") != null) {
+        /* if (session.getAttribute("username") != null) {
             if (session.getAttribute("role").equals("Admin")) {
                 response.sendRedirect("halaman-utama-admin.jsp");
             } else if (session.getAttribute("role").equals("Operator")) {
                 response.sendRedirect("halaman-utama-operator.jsp");
             }
-        }
+        } */
 
         if (null != request.getParameter("commit")) {
             session = request.getSession(true);
