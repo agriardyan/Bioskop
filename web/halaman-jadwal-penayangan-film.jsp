@@ -21,7 +21,7 @@
             out.print("window.location = 'home.jsp'");
             out.print("</script>");
         }
-        if (request.getParameter("logoutAd") != null) {
+        if (request.getParameter("logout") != null) {
             session.removeAttribute("username");
             session.removeAttribute("password");
             session.removeAttribute("name");
@@ -35,11 +35,11 @@
     <head>
         <title>Buat Jadwal Tayang</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
-        <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
+        <link href="Semantic-UI-1.0.0/dist/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Menu bar-->
-        <div class="ui menu">
+        <div class="ui fixed top menu">
             <div class="ui container">
                 <div class="ui pointing dropdown link item">
                     <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
@@ -67,7 +67,7 @@
                         <div class="ui dropdown link item">
                             <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
                             <div class="menu">
-                                <table class="ui basic table">
+                                <table class="ui very basic table">
                                     <tr>
                                         <td>Nama</td>
                                         <td>${name}</td>
@@ -77,7 +77,7 @@
                                         <td>${username}</td>
                                     </tr>
                                 </table>
-                                <input class="ui fluid tiny submit button" type="submit" name="logoutAd" value="Logout">
+                                <a class="item" href="halaman-jadwal-penayangan-film.jsp?logout=yes"><i class="sign out icon"></i>Logout</a>
                             </div>
                         </div>
                     </form>
@@ -91,11 +91,11 @@
         <!--End of Main body-->
 
         <!--Script-->
-        <script src="semantic-ui/packaged/javascript/jquery-2.1.1.js" type="text/javascript"></script>
-        <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
+        <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
+        <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('.ui.dropdown').dropdown();
+                $('.ui.dropdown').dropdown({on: 'hover'});
             });
         </script>
     </body>

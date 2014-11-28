@@ -51,53 +51,29 @@
         }
     %>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Daftar Tayang</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
-        <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
+        <link href="Semantic-UI-1.0.0/dist/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <!--Menu bar-->
-        <div class="ui red inverted menu">
-            <div class="container">
-                <a class="item" href="home.jsp">
-                    <i class="home icon"></i> HOME
-                </a>
-                <a class="active item" href="halaman-daftar-penayangan-film.jsp">
-                    <i class="video icon"></i> NOW PLAYING
-                </a>
-                <a class="item" href="halaman-signin-member.jsp">
-                    <i class="user icon"></i> M-TIX
-                </a>
-                <div class="right menu">
-                    <a class="item" id="loginButton">
-                        <i class="sign in icon"></i> LOGIN
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--End of Menu bar-->
-
         <!--Login Sidebar-->
-        <div class="ui black small vertical right sidebar menu" id="loginSidebar">
+        <div class="ui right vertical sidebar menu" id="loginSidebar">
             <div class="item">
-                <form class="ui form segment" method="POST">
+                <form class="ui form basic segment" method="POST">
                     <div class="field">
-                        <div class="ui blue ribbon label">Username</div>
-                        <div class="ui left labeled icon input">
-                            <input name="username" id="username" type="text" placeholder="Username">
+                        <div class="ui left icon input">
+                            <input name="username" id="user" type="text" placeholder="Username">
                             <i class="user icon"></i>
                         </div>
                     </div>
                     <div class="field">
-                        <div class="ui blue ribbon label">Password</div>
-                        <div class="ui left labeled icon input">
-                            <input name="password" id="password" type="password" placeholder="Password">
+                        <div class="ui left icon input">
+                            <input name="password" id="pass" type="password" placeholder="Password">
                             <i class="lock icon"></i>
                         </div>
                     </div>
                     <div class="field">
-                        <div class="ui blue ribbon label">Connect as</div>
+                        <label>Connect as</label>
                         <div class="ui two fluid red tiny buttons">
                             <input class="ui button" type="submit" name="commit" value="ADMIN">
                             <div class="or"></div>
@@ -109,19 +85,159 @@
         </div>
         <!--End of Login Sidebar-->
 
-        <!--Main body-->
+        <div class="pusher">
+            <!--Menu bar-->
+            <div class="ui fixed top red inverted menu">
+                <div class="container">
+                    <a class="item" href="home.jsp">
+                        <i class="home icon"></i> HOME
+                    </a>
+                    <a class="active item" href="halaman-daftar-penayangan-film.jsp">
+                        <i class="video icon"></i> NOW PLAYING
+                    </a>
+                    <a class="item" href="halaman-signin-member.jsp">
+                        <i class="user icon"></i> M-TIX
+                    </a>
+                    <div class="right menu">
+                        <a class="item" id="loginButton">
+                            <i class="sign in icon"></i> LOGIN
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--End of Menu bar-->
 
-        <!--End of Main body-->
+            <!--Main body-->
+            <h3 class="ui top center aligned attached red header">Now Playing</h3>
+            <div class="ui basic segment attached">
+                <div class="ui six doubling cards">
+                    <div class="card">
+                        <div class="dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button" id="i1">Show Info</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="img/11.jpg">
+                        </div>
+                        <div class="extra">
+                            Pukul: -
+                            <div class="ui star rating" data-rating="4"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button" id="i2">Show Info</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="img/11.jpg">
+                        </div>
+                        <div class="extra">
+                            Pukul: -
+                            <div class="ui star rating" data-rating="4"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button" id="i1">Show Info</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="img/11.jpg">
+                        </div>
+                        <div class="extra">
+                            Pukul: -
+                            <div class="ui star rating" data-rating="4"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button" id="i1">Show Info</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="img/11.jpg">
+                        </div>
+                        <div class="extra">
+                            Pukul: -
+                            <div class="ui star rating" data-rating="4"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button" id="i1">Show Info</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="img/11.jpg">
+                        </div>
+                        <div class="extra">
+                            Pukul: -
+                            <div class="ui star rating" data-rating="4"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button" id="i1">Show Info</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="img/11.jpg">
+                        </div>
+                        <div class="extra">
+                            Pukul: -
+                            <div class="ui star rating" data-rating="4"></div>
+                        </div>
+                    </div>
+                </div>
+            <!--End of Main body-->
+
+            <div class="ui modal">
+                <i class="close icon"></i>
+                <div class="header">
+                    Profile Picture
+                </div>
+                <div class="content">
+                    <div class="ui small image">
+                        <img src="img/11.jpg">
+                    </div>
+                    <div class="description">
+                        <div class="ui header">We've auto-chosen a profile image for you.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
         <!--Script-->
-        <script src="semantic-ui/packaged/javascript/jquery-2.1.1.js" type="text/javascript"></script>
-        <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
+        <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
+        <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 //Login button handler
                 $("#loginButton").click(function() {
                     $("#loginSidebar")
-                            .sidebar('toggle');
+                            .sidebar('setting', {
+                                overlay: true
+                            }).sidebar('toggle');
                 });
 
                 //Login sidebar error prompt
@@ -153,8 +269,21 @@
                             }]
                     }
                 }, {
-                    on: 'blur',
+                    on: 'submit',
                     inline: 'true'
+                });
+
+                $('#i1').click(function() {
+                    $('.ui.modal')
+                            .modal('show');
+                });
+                $('#i2').click(function() {
+                    $('.ui.modal')
+                            .modal('show');
+                });
+
+                $('.six.doubling.cards .image').dimmer({
+                    on: 'hover'
                 });
             });
         </script>

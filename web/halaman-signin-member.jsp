@@ -31,12 +31,12 @@
     <head>
         <title>Sign in M-Tix</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
-        <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
+        <link href="Semantic-UI-1.0.0/dist/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Menu bar-->
-        <div class="container">
-            <div class="ui red inverted menu">
+        <div class="ui fixed top red inverted menu">
+            <div class="container">
                 <a class="item" href="home.jsp">
                     <i class="home icon"></i> HOME
                 </a>
@@ -61,23 +61,21 @@
                     our Administrator.
                 </p>
             </div>
-            <div class="ui grid">
+            <div class="ui grid center aligned">
                 <div class="four wide column">
                     <h4 class="ui top center aligned attached inverted red block header">
                         SIGN IN
                     </h4>
                     <form class="ui form segment attached" id="mtixSignin">
                         <div class="field">
-                            <div class="ui blue ribbon label">Username</div>
-                            <div class="ui left labeled icon input">
-                                <input name="username" type="text" placeholder="Username">
+                            <div class="ui left icon input">
+                                <input name="username" id="user" type="text" placeholder="Username">
                                 <i class="user icon"></i>
                             </div>
                         </div>
                         <div class="field">
-                            <div class="ui blue ribbon label">Password</div>
-                            <div class="ui left labeled icon input">
-                                <input name="password" type="password" placeholder="Password">
+                            <div class="ui left icon input">
+                                <input name="password" id="pass" type="password" placeholder="Password">
                                 <i class="lock icon"></i>
                             </div>
                         </div>
@@ -91,8 +89,8 @@
         <!--End of Main body-->
 
         <!--Script-->
-        <script src="semantic-ui/packaged/javascript/jquery-2.1.1.js" type="text/javascript"></script>
-        <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
+        <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
+        <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
             //Reset login sidebar value when reload
             var originalState = $('#mtixSignin').clone();
@@ -119,7 +117,7 @@
                         ]
                     }
                 }, {
-                    on: 'blur',
+                    on: 'submit',
                     inline: 'true'
                 });
             });
