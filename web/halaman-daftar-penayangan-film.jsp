@@ -52,14 +52,14 @@
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>OM-ITEM</title>
+        <title>Daftar Tayang</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="ui container" style="min-width: 800px">
-            <!--Menu bar-->
-            <div class="ui red inverted menu">
+        <!--Menu bar-->
+        <div class="ui red inverted menu">
+            <div class="container">
                 <a class="item" href="home.jsp">
                     <i class="home icon"></i> HOME
                 </a>
@@ -75,86 +75,88 @@
                     </a>
                 </div>
             </div>
-            <!--End of Menu bar-->
+        </div>
+        <!--End of Menu bar-->
 
-            <!--Login Sidebar-->
-            <div class="ui black small floating vertical right sidebar menu" id="loginSidebar">
-                <div class="item">
-                    <form class="ui form segment" method="POST">
-                        <div class="field">
-                            <div class="ui blue ribbon label">Username</div>
-                            <div class="ui left labeled icon input">
-                                <input name="username" id="username" type="text" placeholder="Username">
-                                <i class="user icon"></i>
-                            </div>
+        <!--Login Sidebar-->
+        <div class="ui black small vertical right sidebar menu" id="loginSidebar">
+            <div class="item">
+                <form class="ui form segment" method="POST">
+                    <div class="field">
+                        <div class="ui blue ribbon label">Username</div>
+                        <div class="ui left labeled icon input">
+                            <input name="username" id="username" type="text" placeholder="Username">
+                            <i class="user icon"></i>
                         </div>
-                        <div class="field">
-                            <div class="ui blue ribbon label">Password</div>
-                            <div class="ui left labeled icon input">
-                                <input name="password" id="password" type="password" placeholder="Password">
-                                <i class="lock icon"></i>
-                            </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui blue ribbon label">Password</div>
+                        <div class="ui left labeled icon input">
+                            <input name="password" id="password" type="password" placeholder="Password">
+                            <i class="lock icon"></i>
                         </div>
-                        <div class="field">
-                            <div class="ui blue ribbon label">Connect as</div>
-                            <div class="ui two fluid red tiny buttons">
-                                <input class="ui button" type="submit" name="commit" value="ADMIN">
-                                <div class="or"></div>
-                                <input class="ui button" type="submit" name="commit" value="OPERATOR">
-                            </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui blue ribbon label">Connect as</div>
+                        <div class="ui two fluid red tiny buttons">
+                            <input class="ui button" type="submit" name="commit" value="ADMIN">
+                            <div class="or"></div>
+                            <input class="ui button" type="submit" name="commit" value="OPERATOR">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-            <!--End of Login Sidebar-->
+        </div>
+        <!--End of Login Sidebar-->
 
-            <!--Main body-->
+        <!--Main body-->
 
-            <!--End of Main body-->
+        <!--End of Main body-->
 
-            <!--Script-->
-            <script src="semantic-ui/packaged/javascript/jquery-2.1.1.js" type="text/javascript"></script>
-            <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
-            <script type="text/javascript">
-                $(document).ready(function() {                    
-                    //Login button handler
-                    $("#loginButton").click(function() {
-                        $("#loginSidebar")
-                                .sidebar('toggle');
-                    });
+        <!--Script-->
+        <script src="semantic-ui/packaged/javascript/jquery-2.1.1.js" type="text/javascript"></script>
+        <script src="semantic-ui/packaged/javascript/semantic.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                //Login button handler
+                $("#loginButton").click(function() {
+                    $("#loginSidebar")
+                            .sidebar('toggle');
+                });
 
-                    //Login sidebar error prompt
-                    $("#sideLogin").form({
-                        username: {
-                            identifier: 'username',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Please enter a username'
-                                }
-                            ]
-                        },
-                        password: {
-                            identifier: 'password',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Please enter a password'
-                                }
-                            ]
-                        },
-                        dropdownValue: {
-                            identifier: 'role',
-                            rules: [
-                                {
-                                    type: 'empty',
-                prompt: 'Please choose a role'
-                    }]
+                //Login sidebar error prompt
+                $("#sideLogin").form({
+                    username: {
+                        identifier: 'username',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter a username'
+                            }
+                        ]
+                    },
+                    password: {
+                        identifier: 'password',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter a password'
+                            }
+                        ]
+                    },
+                    dropdownValue: {
+                        identifier: 'role',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please choose a role'
+                            }]
                     }
-                    }, {
-                        on: 'blur',
-                        inline: 'true'
-                    });             });
-            </script>
+                }, {
+                    on: 'blur',
+                    inline: 'true'
+                });
+            });
+        </script>
     </body>
 </html>

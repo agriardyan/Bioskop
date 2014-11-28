@@ -33,9 +33,10 @@ public class DataPegawai {
     /**
      * 1 : OPERATOR 2 : ADMIN
      */
-    public enum ROLE {
+    public static class Role {
 
-        OPERATOR, ADMIN;
+        public static final String OPERATOR = "OPERATOR"; 
+        public static final String ADMIN = "ADMIN";
     }
 
     public DataPegawai() {
@@ -169,20 +170,20 @@ public class DataPegawai {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         List<DataPegawai> pegawaiList = new ArrayList<DataPegawai>();
 
-        String sql = "SELECT * FROM pegawai WHERE username_pegawai = \'" + pUsername.toUpperCase() + "\'";
+        String sql = "SELECT * FROM pegawai WHERE username_pegawai = ?";
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper());
+        pegawaiList = jdbcTemplate.query(sql, new PegawaiRowMapper(), pUsername.toUpperCase());
 
-        if (pegawaiList.get(0) != null) {
+        if (!pegawaiList.isEmpty()) {
             String username = pegawaiList.get(0).getmUsernamePegawai();
             String password = pegawaiList.get(0).getmPaswordPegawai();
             String role = pegawaiList.get(0).getmRolePegawai();
             if (pUsername.equalsIgnoreCase(username) && pPassword.equals(password) && pRole.equals(role)) {
                 System.out.println("ROLE : " + role);
-                if (role.equals(ROLE.OPERATOR.toString())) {
+                if (role.equals(Role.OPERATOR)) {
                     return 2;
-                } else if (role.equals(ROLE.ADMIN.toString())) {
+                } else if (role.equals(Role.ADMIN)) {
                     return 3;
                 }
             } else {

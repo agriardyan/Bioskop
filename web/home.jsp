@@ -18,7 +18,6 @@
 
         if (null != request.getParameter("commit")) {
             session = request.getSession(true);
-            session.setMaxInactiveInterval(60 * 60 * 24);
             int login = DataPegawai.validateLoginCredential(request.getParameter("username"), request.getParameter("password"), request.getParameter("commit"));
             switch (login) {
                 case 0:
@@ -50,16 +49,15 @@
         }
     %>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>OM-ITEM</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="semantic-ui/packaged/css/semantic.css" rel="stylesheet" type="text/css">
         <link href="bxslider/jquery.bxslider.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="ui container">
-            <!--Menu bar-->
-            <div class="ui red inverted menu">
+        <!--Menu bar-->
+        <div class="ui red inverted main menu">
+            <div class="container">
                 <a class="active item" href="home.jsp">
                     <i class="home icon"></i> HOME
                 </a>
@@ -75,40 +73,42 @@
                     </a>
                 </div>
             </div>
-            <!--End of Menu bar-->
+        </div>
+        <!--End of Menu bar-->
 
-            <!--Login Sidebar-->
-            <div class="ui black small floating vertical right sidebar menu" id="loginSidebar">
-                <div class="item">
-                    <form class="ui form segment" method="POST">
-                        <div class="field">
-                            <div class="ui blue ribbon label">Username</div>
-                            <div class="ui left labeled icon input">
-                                <input name="username" id="username" type="text" placeholder="Username">
-                                <i class="user icon"></i>
-                            </div>
+        <!--Login Sidebar-->
+        <div class="ui black small vertical right sidebar menu" id="loginSidebar">
+            <div class="item">
+                <form class="ui form basic segment" method="POST" id="sideLogin">
+                    <div class="field">
+                        <div class="ui blue ribbon label">Username</div>
+                        <div class="ui left labeled icon input">
+                            <input name="username" id="user" type="text" placeholder="Username">
+                            <i class="user icon"></i>
                         </div>
-                        <div class="field">
-                            <div class="ui blue ribbon label">Password</div>
-                            <div class="ui left labeled icon input">
-                                <input name="password" id="password" type="password" placeholder="Password">
-                                <i class="lock icon"></i>
-                            </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui blue ribbon label">Password</div>
+                        <div class="ui left labeled icon input">
+                            <input name="password" id="pass" type="password" placeholder="Password">
+                            <i class="lock icon"></i>
                         </div>
-                        <div class="field">
-                            <div class="ui blue ribbon label">Connect as</div>
-                            <div class="ui two fluid red tiny buttons">
-                                <input class="ui button" type="submit" name="commit" value="ADMIN">
-                                <div class="or"></div>
-                                <input class="ui button" type="submit" name="commit" value="OPERATOR">
-                            </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui blue ribbon label">Connect as</div>
+                        <div class="ui two fluid red tiny buttons">
+                            <input class="ui button" type="submit" name="commit" value="ADMIN">
+                            <div class="or"></div>
+                            <input class="ui button" type="submit" name="commit" value="OPERATOR">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-            <!--End of Login Sidebar-->
+        </div>
+        <!--End of Login Sidebar-->
 
-            <!--Main body-->
+        <!--Main body-->
+        <div class="main container">
             <div class="ui grid" style="position: absolute;">
                 <div class="row">
                     <div class="three wide column">
@@ -187,7 +187,7 @@
                 //Login sidebar error prompt
                 $("#sideLogin").form({
                     username: {
-                        identifier: 'username',
+                        identifier: 'user',
                         rules: [
                             {
                                 type: 'empty',
@@ -196,21 +196,13 @@
                         ]
                     },
                     password: {
-                        identifier: 'password',
+                        identifier: 'pass',
                         rules: [
                             {
                                 type: 'empty',
                                 prompt: 'Please enter a password'
                             }
                         ]
-                    },
-                    dropdownValue: {
-                        identifier: 'role',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Please choose a role'
-                            }]
                     }
                 }, {
                     on: 'blur',
