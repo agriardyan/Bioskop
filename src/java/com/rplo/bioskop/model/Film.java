@@ -89,6 +89,17 @@ public class Film {
         return filmList;
     }
     
+    public static List<Film> getDataListbyKode(String kode) {
+        DataSource dataSource = DatabaseConnection.getmDataSource();
+        List<Film> filmList = new ArrayList<Film>();
+
+        String sql = "SELECT * FROM film_bioskop WHERE kode_film = '"+ kode +"'";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        filmList = jdbcTemplate.query(sql, new FilmRowMapper());
+        return filmList;
+    }
+    
     public static class FilmRowMapper implements RowMapper<Film> {
 
         @Override

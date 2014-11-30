@@ -51,8 +51,8 @@
                     <div class="field">
                         <input name="genre" type="text" placeholder="Genre">
                     </div>
-                    <!--<div class="two fields">-->
-                        <!--<div class="field">-->
+                    <div class="two fields">
+                        <div class="field">
                             <div class="ui fluid selection dropdown">
                                 <input name="status" type="hidden">
                                 <div class="default text">Status</div>
@@ -62,25 +62,21 @@
                                     <div class="item" data-value="cs" >Coming Soon</div>
                                 </div>
                             </div>
-<!--                        </div>
-                        <div class="field">-->
+                        </div>
+                        <div class="field">
                             <div class="ui fluid selection dropdown">
                                 <input name="kategori" type="hidden">
                                 <div class="default text">Kategori</div>
                                 <i class="dropdown icon"></i>
-                                <div class="menu">
+                                <div class="menu" id="kategori">
                                     <div class="item" data-value="dewasa" >Dewasa</div>
                                     <div class="item" data-value="remaja" >Remaja</div>
                                     <div class="item" data-value="semua" >Semua Umur</div>
                                 </div>
                             </div>
-                        <!--</div>-->
-                    <!--</div>-->
-                    <div class="field">
-                        <div class="ui red tiny buttons">
-                            <input class="ui button" type="submit" name="commit" value="Simpan">
                         </div>
                     </div>
+                    <input class="ui red tiny button" type="submit" name="commit" value="Simpan">
                 </form>
             </div>
         </div>
@@ -206,7 +202,6 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.ui.dropdown').dropdown({on: 'hover'});
-
                 //Tambah film button handler
                 $("#tambah").click(function() {
                     $("#addSidebar")
@@ -252,15 +247,14 @@
                         ]
                     },
                     kategori: {
-                        identifier: 'kategori',
-                        rules: [
+                        identifier: 'kategori', rules: [
                             {
                                 type: 'empty',
                                 prompt: 'Pilih Kategori Film'
                             }]
                     }
                 }, {
-                    on: 'blur',
+                    on: 'submit',
                     inline: 'true'
                 });
             });

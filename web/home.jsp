@@ -9,12 +9,12 @@
 <html>
     <%
         /* if (session.getAttribute("username") != null) {
-            if (session.getAttribute("role").equals("Admin")) {
-                response.sendRedirect("halaman-utama-admin.jsp");
-            } else if (session.getAttribute("role").equals("Operator")) {
-                response.sendRedirect("halaman-utama-operator.jsp");
-            }
-        } */
+         if (session.getAttribute("role").equals("Admin")) {
+         response.sendRedirect("halaman-utama-admin.jsp");
+         } else if (session.getAttribute("role").equals("Operator")) {
+         response.sendRedirect("halaman-utama-operator.jsp");
+         }
+         } */
 
         if (null != request.getParameter("commit")) {
             session = request.getSession(true);
@@ -84,7 +84,7 @@
         </div>
         <!--End of Login Sidebar-->
 
-        <div class="pusher">
+        <div class="pusher" id="context1">
             <!--Menu bar-->
             <div class="ui fixed top red inverted menu">
                 <div class="container">
@@ -105,15 +105,17 @@
                 </div>
             </div>
             <!--End of Menu bar-->
-            
+
             <!--Main body-->
             <div class="ui grid">
                 <div class="three wide column">
-                    <h4 class="ui top center aligned attached inverted red block header">
-                        BENEFIT
-                    </h4>
-                    <div class="ui center aligned segment attached">
-                        <img src="img/OMitem_Benefit.png" style="width: 67%">
+                    <div class="ui sticky">
+                        <h4 class="ui top center aligned attached inverted red block header">
+                            BENEFIT
+                        </h4>
+                        <div class="ui center aligned segment attached">
+                            <img src="img/OMitem_Benefit.png" style="width: 67%">
+                        </div>
                     </div>
                 </div>
                 <div class="ten wide column">
@@ -150,6 +152,10 @@
         <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+                $('.ui.sticky').sticky({
+                    context: '#context1',
+                    pushing: true
+                });
                 //Slideshow 1
                 $('#slider1').bxSlider({
                     speed: 1000, //transition speed

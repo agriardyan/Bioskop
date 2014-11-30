@@ -5,17 +5,19 @@
 --%>
 
 <%@page import="com.rplo.bioskop.model.DataPegawai"%>
+<%@page import="com.rplo.bioskop.model.Film"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <%
-        if (session.getAttribute("username") != null) {
-            if (session.getAttribute("role").equals("Admin")) {
-                response.sendRedirect("halaman-utama-admin.jsp");
-            } else if (session.getAttribute("role").equals("Operator")) {
-                response.sendRedirect("halaman-utama-operator.jsp");
-            }
-        }
+//        if (session.getAttribute("username") != null) {
+//            if (session.getAttribute("role").equals("Admin")) {
+//                response.sendRedirect("halaman-utama-admin.jsp");
+//            } else if (session.getAttribute("role").equals("Operator")) {
+//                response.sendRedirect("halaman-utama-operator.jsp");
+//            }
+//        }
 
         if (null != request.getParameter("commit")) {
             session = request.getSession(true);
@@ -111,126 +113,58 @@
             <h3 class="ui top center aligned attached red header">Now Playing</h3>
             <div class="ui basic segment attached">
                 <div class="ui six doubling cards">
+                    <%
+                        List<Film> film = Film.getDataList();
+                        for (int i = 0; i < film.size(); i++) {
+                            String judul = film.get(i).getmJudulFilm();
+                    %>
                     <div class="card">
                         <div class="dimmable image">
                             <div class="ui dimmer">
                                 <div class="content">
                                     <div class="center">
-                                        <div class="ui inverted button" id="i1">Show Info</div>
+                                        <button class="ui inverted button <%=i%>">Show Info</button>
                                     </div>
                                 </div>
                             </div>
                             <img src="img/11.jpg">
                         </div>
                         <div class="extra">
-                            Pukul: -
-                            <div class="ui star rating" data-rating="4"></div>
+                            <%=judul%>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="dimmable image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui inverted button" id="i2">Show Info</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="img/11.jpg">
-                        </div>
-                        <div class="extra">
-                            Pukul: -
-                            <div class="ui star rating" data-rating="4"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="dimmable image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui inverted button" id="i1">Show Info</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="img/11.jpg">
-                        </div>
-                        <div class="extra">
-                            Pukul: -
-                            <div class="ui star rating" data-rating="4"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="dimmable image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui inverted button" id="i1">Show Info</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="img/11.jpg">
-                        </div>
-                        <div class="extra">
-                            Pukul: -
-                            <div class="ui star rating" data-rating="4"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="dimmable image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui inverted button" id="i1">Show Info</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="img/11.jpg">
-                        </div>
-                        <div class="extra">
-                            Pukul: -
-                            <div class="ui star rating" data-rating="4"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="dimmable image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui inverted button" id="i1">Show Info</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="img/11.jpg">
-                        </div>
-                        <div class="extra">
-                            Pukul: -
-                            <div class="ui star rating" data-rating="4"></div>
-                        </div>
-                    </div>
+                    <%}%>
                 </div>
-            <!--End of Main body-->
-
-            <div class="ui modal">
+            </div>
+            <%
+                for (int i = 0; i < film.size(); i++) {
+                    String judul = film.get(i).getmJudulFilm();
+            %>
+            <div class="ui modal <%=i%>">
                 <i class="close icon"></i>
                 <div class="header">
-                    Profile Picture
+                    <%=judul%>
                 </div>
                 <div class="content">
                     <div class="ui small image">
                         <img src="img/11.jpg">
                     </div>
                     <div class="description">
-                        <div class="ui header">We've auto-chosen a profile image for you.</div>
                     </div>
                 </div>
             </div>
+            <%}%>
         </div>
-        </div>
-
         <!--Script-->
         <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
         <script type="text/javascript">
+            <%
+                for (int i = 0; i < film.size(); i++) {
+            %>
+            $('.ui.modal.<%=i%>')
+                    .modal('attach events', '.ui.inverted.button.<%=i%>', 'show');
+            <%}%>
             $(document).ready(function() {
                 //Login button handler
                 $("#loginButton").click(function() {
@@ -259,27 +193,10 @@
                                 prompt: 'Please enter a password'
                             }
                         ]
-                    },
-                    dropdownValue: {
-                        identifier: 'role',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Please choose a role'
-                            }]
                     }
                 }, {
                     on: 'submit',
                     inline: 'true'
-                });
-
-                $('#i1').click(function() {
-                    $('.ui.modal')
-                            .modal('show');
-                });
-                $('#i2').click(function() {
-                    $('.ui.modal')
-                            .modal('show');
                 });
 
                 $('.six.doubling.cards .image').dimmer({
