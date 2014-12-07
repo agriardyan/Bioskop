@@ -35,6 +35,7 @@
         <title>Registrasi Member</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="Semantic-UI-1.0.0/dist/semantic.css" rel="stylesheet" type="text/css">
+        <link href="date/redmond.datepick.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Menu bar-->
@@ -86,15 +87,206 @@
         <!--End of Menu bar-->
 
         <!--Main body-->
+        <br><br><br>
+        <form method="POST" id="saveMember">
+            <div class="ui two column page grid" >
+                <div class="column">
+                    <div class="ui fluid form segment">
+                        <div class="ui form">
+                            <h4 class="ui horizontal header divider">
+                                <i class="info icon"></i>
+                                Personal Information</h4>
+                            <div class="field">
+                                <label>Nama</label>
+                                <div class="field">
+                                    <input type="text" name="nama" placeholder="Nama">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Jenis Kelamin</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="gender">
+                                    <div class="default text">Jenis Kelamin</div>
+                                    <i class="dropdown icon"></i>
+                                    <div class="menu">
+                                        <div class="item" data-value="laki">Laki-laki</div>
+                                        <div class="item" data-value="perempuan">Perempuan</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Tempat Lahir</label>
+                                    <div class="field">
+                                        <input type="text" placeholder="tempat lahir" name="Tempat_Lahir"></td></tr>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Tanggal Lahir</label>
+                                    <div class="field">
+                                        <input type="text" id="popupDatepicker" placeholder="klik disini" name="Tanggal_Lahir"></td></tr>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="field">
+                                <label>Alamat</label>
+                                <div class="field">
+                                    <input type="text" name="alamat" placeholder="Jalan xxx no.xx, Yogyakarta">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>No Telpon</label>
+                                <div class="field">
+                                    <input type="text" name="telpon" placeholder="08098997809">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui fluid form segment">
+                        <div class="ui form">
+                            <h4 class="ui horizontal header divider">
+                                <i class="user icon"></i>
+                                Detail Member</h4>
+                            <div class="field">
+                                <label>Email</label>
+                                <div class="field">
+                                    <input type="text" name="email" placeholder="member@yahoo.com">
+                                </div>
+                            </div> 
+                            <div class="field">
+                                <label>User Name</label>
+                                <div class="field">
+                                    <input type="text" name="username" placeholder="username">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                <div class="field">
+                                    <input type="password" name="password" placeholder="password">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Confirm Password</label>
+                                <div class="field">
+                                    <input type="password" name="confirm" placeholder="password">
+                                </div>
+                            </div>
+                            <input class="ui blue submit button" type="submit" name="commit" value="Save">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
 
         <!--End of Main body-->
 
         <!--Script-->
         <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
+        <script src="date/jquery.plugin.js" type="text/javascript"></script>
+        <script src="date/jquery.datepick.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.ui.dropdown').dropdown({on: 'hover'});
+                $('#popupDatepicker').datepick({dateFormat:'dd-mm-yyyy'});
+        
+                //save form error prompt 
+                $("#saveMember").form({
+                    nama:{
+                        identifier:'nama',
+                        rules: [{
+                                type:'empty',
+                                prompt:'Masukkan Nama'
+                            }]
+                    },
+                    tempatLahir:
+                        {
+                        identifier:'Tempat_Lahir',
+                        rules:[{
+                                type:'empty',
+                                prompt:'Masukkan Tempat Lahir'
+                            }]
+                    },
+                    tanggalLahir:
+                        {
+                        identifier:'Tanggal_Lahir',
+                        rules:[{
+                                type:'empty',
+                                prompt:'Masukkan Tanggal Lahir'
+                            }] 
+                    },
+                    alamat :
+                        {
+                        identifier:'alamat',
+                        rules:[{
+                                type:'empty',
+                                prompt:'Masukkan Alamat'
+                            }] 
+                    },
+                    telpon :
+                        {
+                        identifier:'telpon',
+                        rules:[{
+                                type:'empty',
+                                prompt:'Masukkan Nomor Telepon'
+                            }] 
+                    },
+                    email :
+                        {
+                        identifier:'email',
+                        rules:[{
+                                type:'empty',
+                                prompt:'Masukkan Email'
+                            }] 
+                    },
+                    username :
+                        {
+                        identifier:'username',
+                        rules:[{
+                                type:'empty',
+                                prompt:'Masukkan Username'
+                            }] 
+                    },
+                    password :
+                        {
+                        identifier:'password',
+                        rules:[{
+                                type:'empty',
+                                prompt:'Masukkan password'
+                            },
+                            {
+                                type:'length[6]',
+                                prompt:'password harus lebih dari 6 karakter'
+                            }] 
+                    },
+                    confirm :
+                        {
+                        identifier:'confirm',
+                        rules:[{
+                                type:'match',
+                                prompt:'password yang anda masukkan tidak sesuai'
+                            }] 
+                    },
+                    gender :
+                        {
+                        identifier:'gender',
+                        rules:[{
+                                type:'empty',
+                                prompt:'pilih jenis kelamin'
+                            }] 
+                    }
+                    
+                    
+                },
+                {
+                    on:'submit',
+                    inline:'true'
+                });
             });
         </script>
     </body>

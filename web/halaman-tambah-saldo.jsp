@@ -86,6 +86,36 @@
         <!--End of Menu bar-->
 
         <!--Main body-->
+        <div class="ui one column page grid">
+            <div class="column">
+                <!--Search box-->
+                <div class="ui action input">
+                    <input placeholder="Cari User" type="text">
+                    <div class="ui icon button">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <!--End of Search box-->
+                <form class="ui fluid form segment" method="POST" id="updateForm">
+                    <div class="three fields">
+                        <div class="field">
+                            <label>Id Member</label>
+                            <input name="id" placeholder="id member" type="text" disabled="disabled">
+                        </div>
+                        <div class="field">
+                            <label>Nama</label>
+                            <input name="nama" placeholder="Nama" type="text" disabled="disabled">
+                        </div>
+                        <div class="field">
+                            <label>Saldo</label>
+                            <input name="saldo" placeholder="Saldo" type="text" disabled="disabled">
+                        </div>
+                    </div>
+                    <input class="ui blue submit button" type="submit" name="commit" value="Tambah Saldo">
+                </form>
+            </div>
+        </div>
+
 
         <!--End of Main body-->
 
