@@ -109,14 +109,14 @@
             <!--Main body-->
             <div class="ui grid">
                 <div class="three wide column">
-                    <div class="ui sticky">
+                    <!--<div class="ui sticky">-->
                         <h4 class="ui top center aligned attached inverted red block header">
                             BENEFIT
                         </h4>
                         <div class="ui center aligned segment attached">
                             <img src="img/OMitem_Benefit.png" style="width: 67%">
                         </div>
-                    </div>
+                    <!--</div>-->
                 </div>
                 <div class="ten wide column">
                     <h4 class="ui top center aligned attached inverted red block header">

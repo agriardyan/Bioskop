@@ -3,25 +3,26 @@
     Created on : Nov 14, 2014, 3:03:21 PM
     Author     : Lorencius
 --%>
-
+<%@page import="com.rplo.bioskop.model.Film"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <%
-        if (session.getAttribute("username") != null) {
-            if (session.getAttribute("role").equals("Operator")) {
-                out.print("<script>");
-                out.print("alert(\"Your current session login as Operator, ");
-                out.print("we will now redirecting you to Operator Home\");");
-                out.print("window.location = 'halaman-utama-operator.jsp';");
-                out.print("</script>");
-            }
-        } else {
-            out.print("<script>");
-            out.print("alert(\"You don't have permission to access this page\");");
-            out.print("window.location = 'home.jsp'");
-            out.print("</script>");
-        }
+//        if (session.getAttribute("username") != null) {
+//            if (session.getAttribute("role").equals("Operator")) {
+//                out.print("<script>");
+//                out.print("alert(\"Your current session login as Operator, ");
+//                out.print("we will now redirecting you to Operator Home\");");
+//                out.print("window.location = 'halaman-utama-operator.jsp';");
+//                out.print("</script>");
+//            }
+//        } else {
+//            out.print("<script>");
+//            out.print("alert(\"You don't have permission to access this page\");");
+//            out.print("window.location = 'home.jsp'");
+//            out.print("</script>");
+//        }
         if (request.getParameter("logout") != null) {
             session.removeAttribute("username");
             session.removeAttribute("password");
@@ -36,12 +37,17 @@
         <title>Tambah Film</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="Semantic-UI-1.0.0/dist/semantic.css" rel="stylesheet" type="text/css">
+        <link href="dropper/jquery.fs.dropper.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Add Film Sidebar-->
         <div class="ui very wide right vertical sidebar menu" id="addSidebar">
             <div class="item">
                 <form class="ui form basic segment" method="POST">
+                    <div class="field">
+                        <div class="dropped dropper">
+                        </div>
+                    </div>
                     <div class="field">
                         <input name="idfilm" type="text" placeholder="ID Film">
                     </div>
@@ -68,7 +74,7 @@
                                 <input name="kategori" type="hidden">
                                 <div class="default text">Kategori</div>
                                 <i class="dropdown icon"></i>
-                                <div class="menu" id="kategori">
+                                <div class="menu">
                                     <div class="item" data-value="dewasa" >Dewasa</div>
                                     <div class="item" data-value="remaja" >Remaja</div>
                                     <div class="item" data-value="semua" >Semua Umur</div>
@@ -76,7 +82,9 @@
                             </div>
                         </div>
                     </div>
-                    <input class="ui red tiny button" type="submit" name="commit" value="Simpan">
+                    <div class="field">
+                        <input class="ui red tiny button" type="submit" name="commit" value="Simpan">
+                    </div>
                 </form>
             </div>
         </div>
@@ -132,66 +140,52 @@
             <!--End of Menu bar-->
 
             <!--Film List Table-->
-            <div class="ui grid" style="width: 100%; position: absolute;">
-                <div class="row">
-                    <div class="ten wide column">
-                        <h4 class="ui top attached center aligned inverted blue block header">
-                            DAFTAR FILM
-                        </h4>
-                        <table class="ui padded table segment attached" id="filmTable">
-                            <thead>
-                                <tr>
-                                    <th>ID Film</th>
-                                    <th>Judul</th>
-                                    <th>Genre</th>
-                                    <th>Status</th>
-                                    <th>Kategori</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>AVG2</td>
-                                    <td>The Avenger 2</td>
-                                    <td>Action</td>
-                                    <td>Coming soon</td>
-                                    <td>Remaja</td>
-                                </tr>
-                                <tr>
-                                    <td>BH</td>
-                                    <td>Big Hero</td>
-                                    <td>Adventure</td>
-                                    <td>Coming soon</td>
-                                    <td>Semua Umur</td>
-                                </tr>
-                                <tr>
-                                    <td>SBM</td>
-                                    <td>Doraemon: Stand By Me</td>
-                                    <td>Adventure</td>
-                                    <td>Now Playing</td>
-                                    <td>Semua Umur</td>
-                                </tr>
-                                <tr>
-                                    <td>JB</td>
-                                    <td>Jessable</td>
-                                    <td>Thriller</td>
-                                    <td>Coming Soon</td>
-                                    <td>Remaja</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="5">
-                            <div class="ui blue labeled icon button" id="tambah">
-                                <i class="video icon"></i> Tambah Film
-                            </div>
-                            </th>
+            <div class="ui grid">
+                <!--<div class="row">-->
+                <div class="ten wide column">
+                    <!--                        
+                    <h4 class="ui top attached center aligned inverted blue block header">
+                                                DAFTAR FILM
+                                            </h4>-->
+                    <table class="ui blue padded table segment" id="filmTable">
+                        <thead>
+                            <tr>
+                                <th>ID Film</th>
+                                <th>Judul</th>
+                                <th>Durasi</th>
+                                <th>Genre</th>
+                                <th>Status</th>
+                                <th>Kategori</th>
                             </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="six wide column">
-                    </div>
+                        </thead>
+                        <tbody>
+                            <% List<Film> film = Film.getDataList();
+                                for (int i = 0; i < film.size(); i++) {
+                            %>
+                            <tr>
+                                <td><%=film.get(i).getmKodeFilm()%></td>
+                                <td><%=film.get(i).getmJudulFilm()%></td>
+                                <td><%=Double.toString(film.get(i).getmDurasi())+" Menit"%></td>
+                                <td><%=film.get(i).getmGenre()%></td>
+                                <td><%=film.get(i).getmStatus()%></td>
+                                <td><%=film.get(i).getmKategori()%></td>
+                            </tr>
+                            <%}%>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">
+                        <div class="ui blue labeled icon button" id="tambah">
+                            <i class="video icon"></i> Tambah Film
+                        </div>
+                        </th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
+                <div class="six wide column">
+                </div>
+                <!--</div>-->
             </div>
             <!--End of Film List Table-->
         </div>
@@ -199,8 +193,10 @@
         <!--Script-->
         <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
+        <script src="dropper/jquery.fs.dropper.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+                $('.dropper').dropper();
                 $('.ui.dropdown').dropdown({on: 'hover'});
                 //Tambah film button handler
                 $("#tambah").click(function() {

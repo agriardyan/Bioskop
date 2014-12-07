@@ -25,7 +25,9 @@ public class Film {
     private String mKodeFilm;
     private String mJudulFilm;
     private double mDurasi;
-    private String mGenre;  
+    private String mGenre;
+    private String mStatus;
+    private String mKategori;
 
     public Film() {
     }
@@ -61,7 +63,23 @@ public class Film {
     public void setmGenre(String mGenre) {
         this.mGenre = mGenre;
     }
-    
+
+    public String getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(String mStatus) {
+        this.mStatus = mStatus;
+    }
+
+    public String getmKategori() {
+        return mKategori;
+    }
+
+    public void setmKategori(String mKategori) {
+        this.mKategori = mKategori;
+    }
+        
     public static void simpanData(Film pFilm)
     {
         DataSource dataSource = DatabaseConnection.getmDataSource();
@@ -120,6 +138,8 @@ public class Film {
             film.setmJudulFilm(rs.getString(2));
             film.setmDurasi(rs.getDouble(3));
             film.setmGenre(rs.getString(4));
+            film.setmStatus(rs.getString(5));
+            film.setmKategori(rs.getString(6));
             
             return film;
         }

@@ -8,20 +8,20 @@
 <!DOCTYPE html>
 <html>
     <%
-        if (session.getAttribute("username") != null) {
-            if (session.getAttribute("role").equals("Operator")) {
-                out.print("<script>");
-                out.print("alert(\"Your current session login as Operator, ");
-                out.print("we will now redirecting you to Operator Home\");");
-                out.print("window.location = 'halaman-utama-operator.jsp';");
-                out.print("</script>");
-            }
-        } else {
-            out.print("<script>");
-            out.print("alert(\"You don't have permission to access this page\");");
-            out.print("window.location = 'home.jsp'");
-            out.print("</script>");
-        }
+//        if (session.getAttribute("username") != null) {
+//            if (session.getAttribute("role").equals("Operator")) {
+//                out.print("<script>");
+//                out.print("alert(\"Your current session login as Operator, ");
+//                out.print("we will now redirecting you to Operator Home\");");
+//                out.print("window.location = 'halaman-utama-operator.jsp';");
+//                out.print("</script>");
+//            }
+//        } else {
+//            out.print("<script>");
+//            out.print("alert(\"You don't have permission to access this page\");");
+//            out.print("window.location = 'home.jsp'");
+//            out.print("</script>");
+//        }
         if (request.getParameter("logout") != null) {
             session.removeAttribute("username");
             session.removeAttribute("password");
@@ -86,70 +86,83 @@
             </div>
         </div>
         <!--End of Menu bar-->
-
-        <div class="ui one column page grid">
-            <div class="column">
-                <!--Search box-->
-                <div class="ui action input">
-                    <input placeholder="Cari User" type="text">
-                    <div class="ui icon button">
-                        <i class="search icon"></i>
-                    </div>
-                </div>
-                <!--End of Search box-->
-                <form class="ui fluid form segment" method="POST" id="updateForm">
-                    <div class="two fields">
+        <br>
+        <br>
+        <br>
+        <br>
+        <form method="POST" id="updateForm">
+            <div class="ui two column page grid">
+                <div class="column">
+                    <div class="ui fluid form segment">
+                        <!--Search box-->
+                        <div class="ui action input">
+                            <input placeholder="Cari User" type="text">
+                            <div class="ui icon button">
+                                <i class="search icon"></i>
+                            </div>
+                        </div>
+                        <!--End of Search box-->
+                        <h4 class="ui horizontal header divider">
+                            <i class="info icon"></i>
+                            Personal Information
+                        </h4>
                         <div class="field">
                             <label>Nama</label>
                             <input name="nama" placeholder="Nama" type="text">
                         </div>
-                        <div class="field">
-                            <label>Tempat Lahir</label>
-                            <input name="tempatLahir" placeholder="Tempat Lahir" type="text">
-                        </div>
-                    </div>
-                    <div class="two fields">
-                        <div class="field">
-                            <label>Tanggal Lahir</label>
-                            <input name="tanggalLahir" type="text" id="datePicker" placeholder="Tanggal Lahir">
-                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Tempat Lahir</label>
+                                <input name="tempatLahir" placeholder="Tempat Lahir" type="text">
+                            </div>
+                            <div class="field">
+                                <label>Tanggal Lahir</label>
+                                <input name="tanggalLahir" type="text" id="datePicker" placeholder="Tanggal Lahir">
+                            </div>
+                        </div> 
                         <div class="field">
                             <label>Alamat</label>
                             <input name="alamat" placeholder="Alamat" type="text">
-                        </div>
-                    </div>    
-                    <div class="two fields">
+                        </div>   
                         <div class="field">
                             <label>Telepon</label>
                             <input name="telepon" placeholder="Telepon" type="text">
                         </div>
-                        <div class="field">
-                            <label>E-mail</label>
-                            <input name="email" placeholder="E-mail" type="text">
-                        </div>
                     </div>
-                    <div class="two fields">
+                </div>
+                <div class="column">
+                    <div class="ui fluid form segment">
+                        <br>
+                        <br>
+                        <h4 class="ui horizontal header divider">
+                            <i class="user icon"></i>
+                            Account Information
+                        </h4>
                         <div class="field">
                             <label>Username</label>
                             <input name="username" placeholder="Username" disabled="disabled" type="text">
                         </div>
                         <div class="field">
-                            <label>Password</label>
-                            <input name="password" placeholder="Password" type="password">
+                            <label>E-mail</label>
+                            <input name="email" placeholder="E-mail" type="text">
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Password</label>
+                                <input name="password" placeholder="Password" type="password">
+                            </div>
+                            <div class="field">
+                                <label>Confirm Password</label>
+                                <input name="cpassword" placeholder="Password" type="password">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input class="ui blue submit button" type="submit" name="commit" value="Update">
                         </div>
                     </div>
-                    <div class="two fields">
-                        <div class="field">
-                        </div>
-                        <div class="field">
-                            <label>Confirm Password</label>
-                            <input name="cpassword" placeholder="Password" type="password">
-                        </div>
-                    </div>
-                    <input class="ui blue submit button" name="commit" value="Update">
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
         <!--Script-->
         <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
@@ -187,7 +200,8 @@
                             {
                                 type: 'empty',
                                 prompt: 'Masukkan Tanggal Lahir'
-                            }]
+                            }
+                        ]
                     },
                     status: {
                         identifier: 'alamat',
@@ -204,7 +218,8 @@
                             {
                                 type: 'empty',
                                 prompt: 'Masukkan Nomor Telepon'
-                            }]
+                            }
+                        ]
                     },
                     email: {
                         identifier: 'email',
@@ -225,20 +240,25 @@
                             {
                                 type: 'length[6]',
                                 prompt: 'Password harus lebih dari 6 karakter'
-                            }]
+                            }
+                        ]
                     },
                     cpassword: {
                         identifier: 'cpassword',
                         rules: [
                             {
-                                type: 'match',
+                                type: 'match[password]',
                                 prompt: 'Password yang Anda masukkan tidak sesuai'
-                            }]
+                            }
+                        ]
                     }
                 },
                 {
                     on: 'submit',
                     inline: 'true'
+                },
+                {
+                    keyboardShortcuts: false
                 });
             });
         </script>
