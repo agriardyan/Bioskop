@@ -4,23 +4,28 @@
     Author     : Lorencius
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
-    <%if (session.getAttribute("username") != null) {
-            if (session.getAttribute("role").equals("Operator")) {
-                out.print("<script>");
-                out.print("alert(\"Your current session login as Operator, ");
-                out.print("we will now redirecting you to Operator Home\");");
-                out.print("window.location = 'halaman-utama-operator.jsp';");
-                out.print("</script>");
-            }
-        } else {
-            out.print("<script>");
-            out.print("alert(\"You don't have permission to access this page\");");
-            out.print("window.location = 'home.jsp'");
-            out.print("</script>");
-        }
+    <%
+//        if (session.getAttribute("username") != null) {
+//            if (session.getAttribute("role").equals("Operator")) {
+//                out.print("<script>");
+//                out.print("alert(\"Your current session login as Operator, ");
+//                out.print("we will now redirecting you to Operator Home\");");
+//                out.print("window.location = 'halaman-utama-operator.jsp';");
+//                out.print("</script>");
+//            }
+//        } else {
+//            out.print("<script>");
+//            out.print("alert(\"You don't have permission to access this page\");");
+//            out.print("window.location = 'home.jsp'");
+//            out.print("</script>");
+//        }
+//        SimpleDateFormat tanggal = new SimpleDateFormat();
+//        String tgl = tanggal.format("dd-M-yyyy");
         if (request.getParameter("logout") != null) {
             session.removeAttribute("username");
             session.removeAttribute("password");
@@ -87,7 +92,7 @@
         <!--End of Menu bar-->
 
         <!--Main body-->
-        <br><br><br>
+        <br><br><br><br>
         <form method="POST" id="saveMember">
             <div class="ui two column page grid" >
                 <div class="column">
@@ -118,16 +123,15 @@
                                 <div class="field">
                                     <label>Tempat Lahir</label>
                                     <div class="field">
-                                        <input type="text" placeholder="tempat lahir" name="Tempat_Lahir"></td></tr>
+                                        <input type="text" placeholder="Tempat Lahir" name="tempatLahir">
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label>Tanggal Lahir</label>
                                     <div class="field">
-                                        <input type="text" id="popupDatepicker" placeholder="klik disini" name="Tanggal_Lahir"></td></tr>
+                                        <input type="text" id="datePicker" placeholder="Tanggal Lahir" name="tanggalLahir">
                                     </div>
                                 </div>
-
                             </div>
                             <div class="field">
                                 <label>Alamat</label>
@@ -138,7 +142,7 @@
                             <div class="field">
                                 <label>No Telpon</label>
                                 <div class="field">
-                                    <input type="text" name="telpon" placeholder="08098997809">
+                                    <input type="text" name="telepon" placeholder="08098997809">
                                 </div>
                             </div>
                         </div>
@@ -149,33 +153,36 @@
                         <div class="ui form">
                             <h4 class="ui horizontal header divider">
                                 <i class="user icon"></i>
-                                Detail Member</h4>
+                                Account Information</h4> 
+                            <div class="field">
+                                <label>User Name</label>
+                                <div class="field">
+                                    <input type="text" name="username" placeholder="Username">
+                                </div>
+                            </div>
                             <div class="field">
                                 <label>Email</label>
                                 <div class="field">
                                     <input type="text" name="email" placeholder="member@yahoo.com">
                                 </div>
-                            </div> 
-                            <div class="field">
-                                <label>User Name</label>
+                            </div>
+                            <div class="two fields">
                                 <div class="field">
-                                    <input type="text" name="username" placeholder="username">
+                                    <label>Password</label>
+                                    <div class="field">
+                                        <input type="password" name="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Confirm Password</label>
+                                    <div class="field">
+                                        <input type="password" name="confirm" placeholder="Password">
+                                    </div>
                                 </div>
                             </div>
                             <div class="field">
-                                <label>Password</label>
-                                <div class="field">
-                                    <input type="password" name="password" placeholder="password">
-                                </div>
+                                <input class="ui blue submit button" type="submit" name="commit" value="Save">
                             </div>
-                            <div class="field">
-                                <label>Confirm Password</label>
-                                <div class="field">
-                                    <input type="password" name="confirm" placeholder="password">
-                                </div>
-                            </div>
-                            <input class="ui blue submit button" type="submit" name="commit" value="Save">
-
                         </div>
                     </div>
                 </div>
@@ -193,99 +200,101 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.ui.dropdown').dropdown({on: 'hover'});
-                $('#popupDatepicker').datepick({dateFormat:'dd-mm-yyyy'});
-        
+                $("#datePicker").datepick({dateFormat: 'dd-M-yyyy'});
+
                 //save form error prompt 
                 $("#saveMember").form({
-                    nama:{
-                        identifier:'nama',
+                    nama: {
+                        identifier: 'nama',
                         rules: [{
-                                type:'empty',
-                                prompt:'Masukkan Nama'
+                                type: 'empty',
+                                prompt: 'Masukkan Nama'
                             }]
                     },
                     tempatLahir:
-                        {
-                        identifier:'Tempat_Lahir',
-                        rules:[{
-                                type:'empty',
-                                prompt:'Masukkan Tempat Lahir'
-                            }]
-                    },
-                    tanggalLahir:
-                        {
-                        identifier:'Tanggal_Lahir',
-                        rules:[{
-                                type:'empty',
-                                prompt:'Masukkan Tanggal Lahir'
-                            }] 
-                    },
-                    alamat :
-                        {
-                        identifier:'alamat',
-                        rules:[{
-                                type:'empty',
-                                prompt:'Masukkan Alamat'
-                            }] 
-                    },
-                    telpon :
-                        {
-                        identifier:'telpon',
-                        rules:[{
-                                type:'empty',
-                                prompt:'Masukkan Nomor Telepon'
-                            }] 
-                    },
-                    email :
-                        {
-                        identifier:'email',
-                        rules:[{
-                                type:'empty',
-                                prompt:'Masukkan Email'
-                            }] 
-                    },
-                    username :
-                        {
-                        identifier:'username',
-                        rules:[{
-                                type:'empty',
-                                prompt:'Masukkan Username'
-                            }] 
-                    },
-                    password :
-                        {
-                        identifier:'password',
-                        rules:[{
-                                type:'empty',
-                                prompt:'Masukkan password'
-                            },
                             {
-                                type:'length[6]',
-                                prompt:'password harus lebih dari 6 karakter'
-                            }] 
-                    },
-                    confirm :
-                        {
-                        identifier:'confirm',
-                        rules:[{
-                                type:'match',
-                                prompt:'password yang anda masukkan tidak sesuai'
-                            }] 
-                    },
-                    gender :
-                        {
-                        identifier:'gender',
-                        rules:[{
-                                type:'empty',
-                                prompt:'pilih jenis kelamin'
-                            }] 
-                    }
-                    
-                    
+                                identifier: 'tempatLahir',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Tempat Lahir'
+                                    }]
+                            },
+                    tanggalLahir:
+                            {
+                                identifier: 'tanggalLahir',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Tanggal Lahir'
+                                    }]
+                            },
+                    alamat:
+                            {
+                                identifier: 'alamat',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Alamat'
+                                    }]
+                            },
+                    telpon:
+                            {
+                                identifier: 'telepon',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Nomor Telepon'
+                                    }]
+                            },
+                    email:
+                            {
+                                identifier: 'email',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Email'
+                                    }]
+                            },
+                    username:
+                            {
+                                identifier: 'username',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Username'
+                                    }]
+                            },
+                    password:
+                            {
+                                identifier: 'password',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Password'
+                                    },
+                                    {
+                                        type: 'length[6]',
+                                        prompt: 'Password harus lebih dari 6 karakter'
+                                    }]
+                            },
+                    confirm:
+                            {
+                                identifier: 'confirm',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Masukkan Konfirmasi Password'
+                                    },
+                                    {
+                                        type: 'match[password]',
+                                        prompt: 'Password yang Anda masukkan tidak sesuai'
+                                    }]
+                            },
+                    gender:
+                            {
+                                identifier: 'gender',
+                                rules: [{
+                                        type: 'empty',
+                                        prompt: 'Pilih Jenis Kelamin'
+                                    }]
+                            }
                 },
                 {
-                    on:'submit',
-                    inline:'true'
+                    on: 'submit',
+                    inline: 'true'
                 });
             });
         </script>
