@@ -7,20 +7,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%if (session.getAttribute("username") != null) {
-            if (session.getAttribute("role").equals("Operator")) {
-                out.print("<script>");
-                out.print("alert(\"Your current session login as Operator, ");
-                out.print("we will now redirecting you to Operator Home\");");
-                out.print("window.location = 'halaman-utama-operator.jsp';");
-                out.print("</script>");
-            }
-        } else {
-            out.print("<script>");
-            out.print("alert(\"You don't have permission to access this page\");");
-            out.print("window.location = 'home.jsp'");
-            out.print("</script>");
-        }
+    <%
+//        if (session.getAttribute("username") != null) {
+//            if (session.getAttribute("role").equals("Operator")) {
+//                out.print("<script>");
+//                out.print("alert(\"Your current session login as Operator, ");
+//                out.print("we will now redirecting you to Operator Home\");");
+//                out.print("window.location = 'halaman-utama-operator.jsp';");
+//                out.print("</script>");
+//            }
+//        } else {
+//            out.print("<script>");
+//            out.print("alert(\"You don't have permission to access this page\");");
+//            out.print("window.location = 'home.jsp'");
+//            out.print("</script>");
+//        }
         if (request.getParameter("logout") != null) {
             session.removeAttribute("username");
             session.removeAttribute("password");
@@ -35,6 +36,7 @@
         <title>Report Penerimaan Uang</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="Semantic-UI-1.0.0/dist/semantic.css" rel="stylesheet" type="text/css">
+        <link href="date/redmond.datepick.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Menu bar-->
@@ -83,6 +85,50 @@
                 </div>
             </div>
         </div>
+                                    
+       <br>
+       <br>
+       <br>
+       
+       <div class="ui two column page grid" >
+            <div class="column">
+            <div class="ui fluid form segment">
+                <h4 class="ui horizontal header divider">
+                    <i class="file text outline icon"></i>
+                    REPORT PENERIMAAN UANG
+                    
+                </h4>
+                <!--<div class="ui bottom segment attached">-->
+                <div class="two fields">
+                <div class="field">
+                    
+                        <div class="field">
+                        <label class="ui red teal tag label" >Tanggal Awal</label>
+                    <input name="tanggalAwal" type="text" id="datePicker" placeholder="Tanggal Awal">
+                        </div>
+                    
+                </div>
+                    
+                    <div class="field">
+                    
+                        <div class="field">
+                        <label class="ui red teal tag label" >Tanggal Akhir</label>
+                    <input name="tanggalAkhir" type="text" id="datePicker" placeholder="Tanggal Akhir">
+                        </div>
+                    
+                </div>
+                    
+                </div>
+                
+                <div class="field">
+                    <div class="ui button" id="download">
+                        <i class="cloud download icon"></i>
+                        Download
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         <!--End of Menu bar-->
 
         <!--Main body-->
@@ -92,9 +138,13 @@
         <!--Script-->
         <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
+        <script src="date/jquery.plugin.js" type="text/javascript"></script>
+        <script src="date/jquery.datepick.js" type="text/javascript"></script>
         <script type="text/javascript">
+        
             $(document).ready(function() {
                 $('.ui.dropdown').dropdown({on: 'hover'});
+                $("#datePicker").datepick({dateFormat: 'dd-M-yyyy'});
             });
         </script>
     </body>

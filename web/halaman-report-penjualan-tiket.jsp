@@ -37,87 +37,100 @@
         <title>Report Penjualan Tiket</title>
         <link rel="shortcut icon" href="img/OM-Item_Logo.png" type="image/png">
         <link href="Semantic-UI-1.0.0/dist/semantic.css" rel="stylesheet" type="text/css">
+        <link href="date/redmond.datepick.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!--Menu bar-->
-        <div class="pusher">
-            <div class="ui fixed top menu">
-                <div class="container">
-                    <div class="ui pointing dropdown link item">
-                        <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
-                            <a class="item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
-                            <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
-                        </div>
+        <div class="ui fixed top menu">
+            <div class="container">
+                <div class="ui pointing dropdown link item">
+                    <i class="user icon"></i> MEMBER <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="halaman-registrasi-member.jsp"><i class="add icon"></i>Tambah Member</a>
+                        <a class="item" href="halaman-edit-data-member.jsp"><i class="edit icon"></i>Edit Member</a>
+                        <a class="item" href="halaman-tambah-saldo.jsp"><i class="dollar icon"></i>Tambah Saldo</a>
                     </div>
-                    <a class="item" href="halaman-jadwal-penayangan-film.jsp">
-                        <i class="play icon"></i> BUAT JADWAL
-                    </a>
-                    <a class="item" href="halaman-tambah-film.jsp">
-                        <i class="video icon"></i> TAMBAH FILM
-                    </a>
-                    <div class="ui pointing dropdown link item">
-                        <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a class="item" href="halaman-report-penerimaan-uang.jsp"><i class="dollar icon"></i>Penerimaan Uang</a>
-                            <a class="active item" href="halaman-report-penjualan-tiket.jsp"><i class="ticket icon"></i>Penjualan Tiket</a>
-                        </div>
+                </div>
+                <a class="item" href="halaman-jadwal-penayangan-film.jsp">
+                    <i class="play icon"></i> BUAT JADWAL
+                </a>
+                <a class="item" href="halaman-tambah-film.jsp">
+                    <i class="video icon"></i> TAMBAH FILM
+                </a>
+                <div class="ui pointing dropdown link item">
+                    <i class="archive icon"></i> REPORT <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="halaman-report-penerimaan-uang.jsp"><i class="dollar icon"></i>Penerimaan Uang</a>
+                        <a class="active item" href="halaman-report-penjualan-tiket.jsp"><i class="ticket icon"></i>Penjualan Tiket</a>
                     </div>
-                    <div class="right menu">
-                        <form method="POST">
-                            <div class="ui dropdown link item">
-                                <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <table class="ui very basic table">
-                                        <tr>
-                                            <td>Nama</td>
-                                            <td>${name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>${username}</td>
-                                        </tr>
-                                    </table>
-                                    <a class="item" href="halaman-report-penjualan-tiket.jsp?logout=yes"><i class="sign out icon"></i>Logout</a>
-                                </div>
+                </div>
+                <div class="right menu">
+                    <form method="POST">
+                        <div class="ui dropdown link item">
+                            <i class="desktop icon"></i> ADMIN <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <table class="ui very basic table">
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td>${name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>${username}</td>
+                                    </tr>
+                                </table>
+                                <a class="item" href="halaman-report-penjualan-tiket.jsp?logout=yes"><i class="sign out icon"></i>Logout</a>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="ui grid" style="width: 100%; position: absolute;">
-                <div class="row">
-                    <div class="ten wide column">
-                        <h4 class="ui top attached center aligned inverted blue block header">
-                            REPORT PENJUALAN TIKET
-                        </h4>
-                        <div class="ui bottom segment attached">
-                            <label class="ui red teal tag label" >Pilih Bulan</label>
-
-                            <select class="ui selection dropdown" name="bulan" id="bulan" onchange="">
-                                <option value="januari">Januari</option>
-                                <option value="februari">Februari</option>
-                                <option value="maret">Maret</option>
-                                <option value="april">April</option>
-                                <option value="mei">Mei</option>
-                                <option value="juni">Juni</option>
-                                <option value="juli">Juli</option>
-                                <option value="agustus">Agustus</option>
-                                <option value="september">September</option>
-                                <option value="oktober">Oktober</option>
-                                <option value="november">November</option>
-                                <option value="desember">Desember</option>
-                            </select>
-
                         </div>
-                    </div>
-                    <div class="six wide column">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div class="ui two column page grid" >
+            <div class="column">
+            <div class="ui fluid form segment">
+                <h4 class="ui horizontal header divider">
+                    <i class="file text outline icon"></i>
+                    REPORT PENJUALAN TIKET
+                    
+                </h4>
+                <!--<div class="ui bottom segment attached">-->
+                <div class="two fields">
+                <div class="field">
+                    
+                        <div class="field">
+                        <label class="ui red teal tag label" >Tanggal Awal</label>
+                    <input name="tanggalAwal" type="text" id="datePicker" placeholder="Tanggal Awal">
+                        </div>
+                    
+                </div>
+                    
+                    <div class="field">
+                    
+                        <div class="field">
+                        <label class="ui red teal tag label" >Tanggal Akhir</label>
+                    <input name="tanggalAkhir" type="text" id="datePicker" placeholder="Tanggal Akhir">
+                        </div>
+                    
+                </div>
+                    
+                </div>
+                
+                <div class="field">
+                    <div class="ui button" id="download">
+                        <i class="cloud download icon"></i>
+                        Download
                     </div>
                 </div>
             </div>
-            <!--End of Film List Table-->
         </div>
+        </div>
+        <!--End of Film List Table-->
+
 
         <!--End of Menu bar-->
 
@@ -128,9 +141,12 @@
         <!--Script-->
         <script src="Semantic-UI-1.0.0/dist/jquery-2.1.1.js" type="text/javascript"></script>
         <script src="Semantic-UI-1.0.0/dist/semantic.js" type="text/javascript"></script>
+        <script src="date/jquery.plugin.js" type="text/javascript"></script>
+        <script src="date/jquery.datepick.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.ui.dropdown').dropdown({on: 'hover'});
+                $("#datePicker").datepick({dateFormat: 'dd-M-yyyy'});
             });
         </script>
     </body>

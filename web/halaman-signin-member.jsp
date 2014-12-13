@@ -69,9 +69,11 @@
                 <div class="header">
                     You have to sign in
                 </div>
-                <p>Fill the form with your User ID and Password if you are already a member of our M-TIX program
-                    then do sign in by clicking the Sign in button. <br> If you are facing a problem please contact 
-                    our Administrator.
+                <p>
+                    Isi form dengan User ID dan Password anda jika anda sudah terdaftar sebagai member M-TIX kami
+                    kemudian tekan tombol Sign In. <br>
+                    Untuk informasi lebih lanjut, Anda dapat menghubungi administrator kami, terimakasih.
+                    
                 </p>
             </div>
             <div class="ui grid center aligned">
