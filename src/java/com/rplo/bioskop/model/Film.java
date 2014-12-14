@@ -85,14 +85,16 @@ public class Film {
         DataSource dataSource = DatabaseConnection.getmDataSource();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        String sql = "INSERT INTO film_bioskop VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO film_bioskop VALUES(?, ?, ?, ?, ? ,?)";
 
         jdbcTemplate.update(sql,
                 new Object[]{
                     pFilm.getmKodeFilm(),
                     pFilm.getmJudulFilm(),
                     pFilm.getmDurasi(),
-                    pFilm.getmGenre()
+                    pFilm.getmGenre(),
+                    pFilm.getmStatus(),
+                    pFilm.getmKategori()
                 });
     }
     

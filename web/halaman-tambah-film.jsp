@@ -23,6 +23,21 @@
 //            out.print("window.location = 'home.jsp'");
 //            out.print("</script>");
 //        }
+        
+        if(request.getParameter("commit")!=null) {
+            Film film = new Film();
+            film.setmKodeFilm(request.getParameter("idfilm"));
+            film.setmJudulFilm(request.getParameter("judul"));
+            film.setmDurasi(Double.parseDouble(request.getParameter("durasi")));
+            film.setmGenre(request.getParameter("genre"));
+            film.setmStatus(request.getParameter("status"));
+            film.setmKategori(request.getParameter("kategori"));
+            
+            Film.simpanData(film);
+            
+        }
+        
+        
         if (request.getParameter("logout") != null) {
             session.removeAttribute("username");
             session.removeAttribute("password");
@@ -53,6 +68,9 @@
                     </div>
                     <div class="field">
                         <input name="judul" type="text" placeholder="Judul">
+                    </div>
+                    <div class="field">
+                        <input name="durasi" type="text" placeholder="Durasi">
                     </div>
                     <div class="field">
                         <input name="genre" type="text" placeholder="Genre">
